@@ -5,7 +5,157 @@
       "main": [
         [
           {
+            "node": "My purpose is to be a clipboard :(",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "My purpose is to be a clipboard :(": {
+      "main": [
+        [
+          {
+            "node": "Im just a tool",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook with fake output data": {
+      "main": [
+        [
+          {
+            "node": "Im just a tool",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Im just a tool": {
+      "main": [
+        [
+          {
+            "node": "build a bunch of things",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "build a bunch of things": {
+      "main": [
+        [
+          {
+            "node": "SplitInBatches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SplitInBatches": {
+      "main": [
+        [
+          {
+            "node": "IF no more",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait 1s": {
+      "main": [
+        [
+          {
+            "node": "SplitInBatches",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF no more": {
+      "main": [
+        [
+          {
+            "node": "Set",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait 1s",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code 7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code 7": {
+      "main": [
+        [
+          {
+            "node": "NoOp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "NoOp": {
+      "main": [
+        [
+          {
+            "node": "Code 9",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code 9": {
+      "main": [
+        [
+          {
             "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Set 10",
             "type": "main",
             "index": 0
           }
@@ -14,38 +164,23 @@
     }
   },
   "createdAt": "2022-11-12T13:44:55.275Z",
-  "hash": "4ebe7cf6acbf3fe906e3d9570752b42e",
+  "hash": "931f70154f6bbc6b6069c31a9b2bd441",
   "id": 1,
   "name": "10 Tips",
   "nodes": [
-    {
-      "parameters": {
-        "content": "# 1. Turn on save manual execution data while developing\n### Ref: [Activating and examining the workflow - n8n Documentation](https://docs.n8n.io/courses/level-one/chapter-5/chapter-5.8/)\n\n- In each workflow you can configure what data is saved\n  - manual executions by default **are not saved**. Toggle this to **ON** for a better dev experience.\n- If something goes wrong in your manual execution, or the browser de-syncs, you can flip over to the execution tab and see everything that happened.",
-        "height": 337,
-        "width": 563
-      },
-      "id": "e540c8c3-ae42-4589-9898-edf078970d07",
-      "name": "Note",
-      "type": "n8n-nodes-base.stickyNote",
-      "typeVersion": 1,
-      "position": [
-        120,
-        -60
-      ]
-    },
     {
       "parameters": {
         "content": "# 2. [Pin ](https://docs.n8n.io/data/data-pinning/)or [Mock ](https://docs.n8n.io/data/data-editing/)Data while developing\n\n1. **These features do not work in production workflows- only while testing**\n2. By pinning and/or mocking data of previous nodes we can save a lot of time. This reduces api calls, and requirements/blockers to dev efforts.",
         "height": 337,
         "width": 563
       },
-      "id": "2fd8b449-4202-4539-8b73-7e9a297f5dff",
+      "id": "6e529ecb-8182-4e21-9ba3-f65c09e2f40e",
       "name": "Note1",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        720,
-        -60
+        -1160,
+        920
       ]
     },
     {
@@ -54,13 +189,13 @@
         "height": 337,
         "width": 563
       },
-      "id": "66d45103-fada-4ea2-a048-e9fced696320",
+      "id": "5d8e5078-c090-4429-8153-e9fff9131e30",
       "name": "Note2",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        1320,
-        -60
+        -560,
+        920
       ]
     },
     {
@@ -69,13 +204,13 @@
         "height": 337,
         "width": 563
       },
-      "id": "1769bbd8-5156-436d-b4a0-74ac8d34dfb0",
+      "id": "67715505-0fe3-4b9b-855b-fe3ac1257768",
       "name": "Note3",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        120,
-        320
+        40,
+        920
       ]
     },
     {
@@ -84,13 +219,13 @@
         "height": 727.6979949874686,
         "width": 887.6447368421049
       },
-      "id": "99256aa8-7be2-4d2e-b9c0-b3a5a498416c",
+      "id": "514c7790-b761-425e-a933-6ca8bfd4f223",
       "name": "Note4",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        740,
-        360
+        640,
+        520
       ]
     },
     {
@@ -99,43 +234,43 @@
         "height": 182.40726817042588,
         "width": 499.75751879699214
       },
-      "id": "e823da21-f9a2-4d51-abcd-f4f279cd1da2",
+      "id": "303e34ab-2a84-4906-a00e-90a2fd5668bc",
       "name": "Note5",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        120,
-        -280
+        1560,
+        1060
       ]
     },
     {
       "parameters": {
         "content": "# 7. Use the browser dev tools\n\n  1. Console.log() can be used in any expression or code node, anywhere!\n  2. N8N frontend is built with Vue - if you are familiar with vue dev, you may be able to leverage vue dev tools in your browser.\n  3. Network tab\n  a. Especially with the [HTTP Request node ](https://docs.n8n.io/integrations/builtin/core-nodes/n8n-nodes-base.httprequest/)- when sending requests manually the payload will be logged in the network tab for review",
-        "height": 369.32393483709245,
-        "width": 596.7293233082704
+        "height": 338.79760834851254,
+        "width": 595.5082702487273
       },
-      "id": "443e3059-f73f-4efa-9fed-b94f471f1fc2",
+      "id": "a00e94d1-6efc-4553-a17d-2547ef73bcc4",
       "name": "Note6",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        700,
-        -300
+        2100,
+        900
       ]
     },
     {
       "parameters": {
         "content": "# 8. Start at the [docs ](https://docs.n8n.io/)- then [community ](https://community.n8n.io/)- then [GitHub](https://github.com/n8n-io/n8n/issues)/Google\n  1. Trouble? Questions? Bugs? (Or so you think?)\n  a. First search the docs: [  Welcome - n8n Documentation ](https://docs.n8n.io/)\n  b. If no luck, search the forum: [ n8n ](https://community.n8n.io/)\n  c. Still no luck? Quickly check [their github issues page ](https://github.com/n8n-io/n8n/issues)with no filters before turning to google.",
-        "height": 369.32393483709245,
+        "height": 354.06077159280244,
         "width": 596.7293233082704
       },
-      "id": "212a5084-2685-4025-8d5e-9911081239bc",
+      "id": "56b8864f-d21e-4b05-9b98-014dbc727ade",
       "name": "Note7",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        1920,
-        -280
+        2740,
+        880
       ]
     },
     {
@@ -144,13 +279,13 @@
         "height": 369.32393483709245,
         "width": 596.7293233082704
       },
-      "id": "9b871688-f994-4f77-99c7-50defeec8568",
+      "id": "97fc5d55-78a2-435d-851d-ebb72cd4c8e9",
       "name": "Note8",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        2220,
-        -300
+        3380,
+        860
       ]
     },
     {
@@ -159,43 +294,323 @@
         "height": 387.67293233082717,
         "width": 575.8878446115287
       },
-      "id": "7f2fa67f-e40e-43a4-aaf0-978a8501906a",
+      "id": "26dfc1a3-2af0-446d-8dac-4f73bf3e01ee",
       "name": "Note9",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        2020,
-        120
+        4020,
+        840
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# 1. Turn on save manual execution data while developing\n### Ref: [Activating and examining the workflow - n8n Documentation](https://docs.n8n.io/courses/level-one/chapter-5/chapter-5.8/)\n\n- In each workflow you can configure what data is saved\n  - manual executions by default **are not saved**. Toggle this to **ON** for a better dev experience.\n- If something goes wrong in your manual execution, or the browser de-syncs, you can flip over to the execution tab and see everything that happened.",
+        "height": 362.64211425040713,
+        "width": 563
+      },
+      "id": "fd132b17-2acc-452e-b546-0f2dccff446a",
+      "name": "Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -1760,
+        894.3578857495927
       ]
     },
     {
       "parameters": {},
-      "id": "30801950-658e-4185-ac62-4f6d9f023f07",
+      "id": "1eb43a2a-c0f2-4c3a-8382-533be705aaab",
       "name": "On clicking 'execute'",
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
+        -1540,
+        1300
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "33ae3204-51fa-4fb1-9b11-a6969628185e",
+      "name": "My purpose is to be a clipboard :(",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        -940,
+        1300
+      ]
+    },
+    {
+      "parameters": {
+        "path": "df6a70aa-5dbd-4881-8f8b-0a1985fb6443",
+        "options": {}
+      },
+      "id": "c9d4aa42-78e1-4d88-85e1-6c6de552b95f",
+      "name": "Webhook with fake output data",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -940,
+        1480
+      ],
+      "webhookId": "df6a70aa-5dbd-4881-8f8b-0a1985fb6443"
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "formSource",
+              "value": "={{ $json[\"headers\"][\"source\"] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "23c86898-1363-431f-a146-5f4d1beb31e9",
+      "name": "Im just a tool",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        -340,
+        1300
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "f6c7b7ac-035f-4096-9482-9cee42c9d8a4",
+      "name": "SplitInBatches",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 1,
+      "position": [
         240,
-        420
+        1300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "let junk = Array(30).fill(0).map((e,i)=>{return {'index': i+1}})\n\nreturn {junk}"
+      },
+      "id": "698b2e29-3fd3-4f31-9510-008ee7c4b285",
+      "name": "build a bunch of things",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        40,
+        1300
+      ]
+    },
+    {
+      "parameters": {
+        "unit": "seconds"
+      },
+      "id": "b2991fcc-0433-4342-8ba9-fd671b455170",
+      "name": "Wait 1s",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1,
+      "position": [
+        260,
+        1520
+      ],
+      "webhookId": "bcb25797-925d-4f16-85ec-40e6476df0b2"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": true,
+              "value2": "={{$node[\"SplitInBatches\"].context[\"noItemsLeft\"]}}"
+            }
+          ]
+        }
+      },
+      "id": "98f292b2-958a-438d-bea5-622a61c100e2",
+      "name": "IF no more",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        420,
+        1300
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "jmespathExample",
+              "value": "={{$jmespath($input.all(), \"[].json.junk[?index==`1`][] | [0]\" ) }}"
+            },
+            {
+              "name": "luxonExample",
+              "value": "={{$today.minus({days: 7}).toLocaleString()}}\n or\n{{$today.minus({days: 7}).toLocaleString(DateTime.DATETIME_FULL)}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "a42107a8-0782-4f96-9760-e4172754e632",
+      "name": "Set",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        1280
+      ]
+    },
+    {
+      "parameters": {
+        "url": "http:///badaddress.test",
+        "options": {}
+      },
+      "id": "a160293c-0111-471b-b29e-80f13f4752d9",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        1740,
+        1280
+      ],
+      "alwaysOutputData": true,
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field\n// called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n  console.log(`I'm the new value! ${item.json.myNewField.toString()}`)\n  console.log(`I'm also the new value!`+item.json.myNewField.toString())\n}\n\nreturn $input.all();"
+      },
+      "id": "a7610d83-c6a6-4a99-8f23-0129246e9ebe",
+      "name": "Code 7",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        2340,
+        1280
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "2ad5dee2-35e4-4e9c-8d6f-1d56b8416001",
+      "name": "NoOp",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        2980,
+        1280
       ]
     },
     {
       "parameters": {
         "jsCode": "// Loop over input items and add a new field\n// called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
       },
-      "id": "75af69b7-1449-42bf-87b4-4c16c5ca1929",
+      "id": "3a834da0-eec0-4e65-b742-6a79bfbbef7a",
+      "name": "Code 9",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        3620,
+        1280
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field\n// called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  let myBigString = `\n  <html>\n    <div> All the things in the html</div>\n    <p>Some ${$input.first().json.myNewField ? '<br>I exist!<br>' : ''} dynamic stuff too.</p>\n    <em>This also captures newlines!</em>\n  </html> \n`;\n  item.json.myBigString = 1;\n}\n\nreturn $input.all();"
+      },
+      "id": "b11966e0-6998-49bd-ac4f-bb5fffd654a7",
       "name": "Code",
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        460,
-        420
+        4120,
+        1280
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "githubRepo",
+              "value": "https://github.com/Bwilliamson55/n8n_public_workflows"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "9e66ef53-4a71-4130-8ac5-54ee0964f147",
+      "name": "Set 10",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [
+        4300,
+        1280
       ]
     }
   ],
-  "pinData": {},
-  "settings": {},
+  "pinData": {
+    "My purpose is to be a clipboard :(": [
+      {
+        "json": {
+          "headers": {
+            "host": "the.example.com",
+            "x-forwarded-scheme": "https",
+            "x-forwarded-proto": "https",
+            "x-forwarded-for": "12.12.12.12",
+            "x-real-ip": "12.12.22.12",
+            "connection": "close",
+            "content-length": "4572",
+            "authorization": "Bearer supersecretkey",
+            "source": "my-custom-form-header",
+            "content-type": "application/json",
+            "user-agent": "Mozilla/5.0 (compatible; Google-Apps-Script; beanserver; +https://script.google.com; id: blabla)",
+            "accept-encoding": "gzip, deflate, br"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "some": "params",
+            "and": "stuff"
+          }
+        }
+      }
+    ],
+    "Webhook with fake output data": [
+      {
+        "json": {
+          "headers": {
+            "host": "the.example.com",
+            "x-forwarded-scheme": "https",
+            "x-forwarded-proto": "https",
+            "x-forwarded-for": "12.12.12.12",
+            "x-real-ip": "12.12.22.12",
+            "connection": "close",
+            "content-length": "4572",
+            "authorization": "Bearer supersecretkey",
+            "source": "my-custom-form-header",
+            "content-type": "application/json",
+            "user-agent": "Mozilla/5.0 (compatible; Google-Apps-Script; beanserver; +https://script.google.com; id: blabla)",
+            "accept-encoding": "gzip, deflate, br"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "some": "params",
+            "and": "stuff"
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "saveExecutionProgress": "DEFAULT",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
   "staticData": null,
   "tags": [],
-  "updatedAt": "2022-11-12T15:16:52.814Z"
+  "updatedAt": "2022-11-13T19:22:53.270Z"
 }
