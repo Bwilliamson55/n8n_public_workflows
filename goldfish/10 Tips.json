@@ -164,7 +164,7 @@
     }
   },
   "createdAt": "2022-11-12T13:44:55.275Z",
-  "hash": "931f70154f6bbc6b6069c31a9b2bd441",
+  "hash": "2445789ce1d48c47b11bc9d105fe3d96",
   "id": 1,
   "name": "10 Tips",
   "nodes": [
@@ -549,6 +549,21 @@
         4300,
         1280
       ]
+    },
+    {
+      "parameters": {
+        "content": "# 10 Tips for N8N\n\n[Get this workflow on Github](https://github.com/Bwilliamson55/n8n_public_workflows/tree/main/goldfish)",
+        "height": 133.6,
+        "width": 309.59999999999997
+      },
+      "id": "46729451-3155-46c5-867d-a9c2dc8336ea",
+      "name": "Note10",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -2100,
+        1120
+      ]
     }
   ],
   "pinData": {
@@ -612,5 +627,5 @@
   },
   "staticData": null,
   "tags": [],
-  "updatedAt": "2022-11-13T19:22:53.270Z"
+  "updatedAt": "2022-11-13T23:22:17.374Z"
 }
