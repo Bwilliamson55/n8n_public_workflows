@@ -164,7 +164,7 @@
     }
   },
   "createdAt": "2022-11-12T13:44:55.275Z",
-  "hash": "84fae254f8d6b08eac77ea3b9b46ccff",
+  "hash": "6f52cec34bc8598493912ac0eca20bd0",
   "id": 1,
   "name": "10 Tips",
   "nodes": [
@@ -380,6 +380,7 @@
     },
     {
       "parameters": {
+        "batchSize": 5,
         "options": {}
       },
       "id": "f6c7b7ac-035f-4096-9482-9cee42c9d8a4",
@@ -393,7 +394,7 @@
     },
     {
       "parameters": {
-        "jsCode": "let junk = Array(30).fill(0).map((e,i)=>{return {'index': i+1}})\n\nreturn {junk}"
+        "jsCode": "let junk = Array(30).fill(0).map((e,i)=>{return {'index': i+1}})\n\nreturn junk"
       },
       "id": "698b2e29-3fd3-4f31-9510-008ee7c4b285",
       "name": "build a bunch of things",
@@ -416,7 +417,8 @@
         260,
         1520
       ],
-      "webhookId": "bcb25797-925d-4f16-85ec-40e6476df0b2"
+      "webhookId": "bcb25797-925d-4f16-85ec-40e6476df0b2",
+      "disabled": true
     },
     {
       "parameters": {
@@ -505,7 +507,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// Loop over input items and add a new field\n// called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+        "jsCode": "// Loop over input items and add a new field\n// called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 2;\n}\nfor (let item of $input.all()) {\n  item.json.myNewField = 3;\n}\n\nreturn $input.all();"
       },
       "id": "3a834da0-eec0-4e65-b742-6a79bfbbef7a",
       "name": "Code 9",
@@ -627,5 +629,5 @@
   },
   "staticData": null,
   "tags": [],
-  "updatedAt": "2022-11-14T12:17:24.602Z"
+  "updatedAt": "2022-11-15T12:59:28.597Z"
 }
