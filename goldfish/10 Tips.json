@@ -164,7 +164,7 @@
     }
   },
   "createdAt": "2022-11-12T13:44:55.275Z",
-  "hash": "6f52cec34bc8598493912ac0eca20bd0",
+  "hash": "bddc8eb0ca26ed27299ca7929e30cf43",
   "id": 1,
   "name": "10 Tips",
   "nodes": [
@@ -507,7 +507,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// Loop over input items and add a new field\n// called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 2;\n}\nfor (let item of $input.all()) {\n  item.json.myNewField = 3;\n}\n\nreturn $input.all();"
+        "jsCode": "// Loop over input items and add a new field\n// called 'myNewField' to the JSON of each one\nfor (let item of $input.all()) {\n  item.json.myNewField = 3;\n}\nfor (const item of $input.all()) {\n  item.json.myNewField = 2;\n}\n\n\nreturn $input.all();"
       },
       "id": "3a834da0-eec0-4e65-b742-6a79bfbbef7a",
       "name": "Code 9",
@@ -520,7 +520,7 @@
     },
     {
       "parameters": {
-        "jsCode": "// Loop over input items and add a new field\n// called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  let myBigString = `\n  <html>\n    <div> All the things in the html</div>\n    <p>Some ${$input.first().json.myNewField ? '<br>I exist!<br>' : ''} dynamic stuff too.</p>\n    <em>This also captures newlines!</em>\n  </html> \n`;\n  item.json.myBigString = 1;\n}\n\nreturn $input.all();"
+        "jsCode": "// Loop over input items and add a new field\n// called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  let myBigString = `\n  <html>\n    <div> All the things in the html</div>\n    <p>Some ${$input.first().json.myNewField ? '<br>I exist!<br>' : ''} dynamic stuff too.</p>\n    <em>This also captures newlines!</em>\n  </html> \n`;\n  item.json.myBigString = myBigString\n}\n\nreturn $input.all();"
       },
       "id": "b11966e0-6998-49bd-ac4f-bb5fffd654a7",
       "name": "Code",
@@ -629,5 +629,5 @@
   },
   "staticData": null,
   "tags": [],
-  "updatedAt": "2022-11-15T12:59:28.597Z"
+  "updatedAt": "2022-11-15T13:16:59.931Z"
 }
