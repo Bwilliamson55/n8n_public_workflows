@@ -1,14 +1,125 @@
 {
-  "active": false,
-  "connections": {},
+  "active": true,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
   "createdAt": "2022-11-15T23:34:17.988Z",
-  "hash": "1b6f45a596f73c1b6a208842dde5557e",
+  "hash": "4251bfb2c68c3afc1c2b277098768a2d",
   "id": 6,
   "name": "HTMX and json",
-  "nodes": [],
+  "nodes": [
+    {
+      "parameters": {
+        "path": "htmx-mustache-demo",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "9ae13bd7-c674-4df4-b36f-1ecef2ec8552",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        820,
+        400
+      ],
+      "webhookId": "df6508d9-4468-4d15-9194-d01def2938aa"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "<!DOCTYPE html>\n<html>\n<head>\n  <meta charset=\"utf-8\">\n  <meta name=\"viewport\" content=\"width=device-width\">\n  <title>HTMX client templates via N8N</title>\n  <link rel=\"stylesheet\" href=\"https://cdn.simplecss.org/simple.min.css\">\n  <script src=\"https://unpkg.com/hyperscript.org@0.9.7\"></script>\n  <script src=\"https://unpkg.com/htmx.org\"></script>\n  <script src=\"https://unpkg.com/htmx.org/dist/ext/client-side-templates.js\"></script>\n  <script src=\"https://unpkg.com/mustache@latest\"></script>\n</head>\n<style>\n  body {\n    grid-template-columns: 1fr minmax(20rem, 95%) 1fr;\n  }\n</style>\n<body>\n  <main class=\"airy\">\n    <section>\n      <h1>HTML Table demo with..</h1>\n      <p>\n        <ul>\n          <li>HTMX</li>\n          <li>HyperScript</li>\n          <li>Simple CSS</li>\n          <li>Mustache templates</li>\n        </ul>\n      </p>\n    </article>\n    <div hx-ext=\"client-side-templates\">\n      <button hx-get=\"https://goldfish-app-k52k2.ondigitalocean.app/webhook/htmx-mustache-demo-get-json\" \n              hx-swap=\"afterend\"\n              hx-target=\"#table-header\"\n              mustache-template=\"foo\">\n        Click Me to get data\n      </button>\n      <br>\n      <input _=\"on input\n        show <tbody>tr/> in #content-table when it's textContent.toLowerCase() contains my value.toLowerCase()\n        \"/>\n      <table id=\"content-table\">\n        <tbody>\n          <tr id=\"table-header\">\n            <th>Post Id</th>\n            <th>ID</th>\n            <th>Name</th>\n            <th>Email</th>\n            <th>Body</th>\n          </tr>\n        </tbody>\n      </table>\n      <footer class=\"dense\">Copyright bla bla</footer>\n\n      <template id=\"foo\">\n          <!-- {{#array}} -->\n            <tr>\n                <td>{{postId}}</td>\n                <td>{{id}}</td>\n                <td>{{name}}</td>\n                <td>{{email}}</td>\n                <td>{{body}}</td>\n            </tr>\n          <!-- {{/array}} -->\n      </template>\n    </div>\n  </main>\n</body>\n</html>",
+        "options": {}
+      },
+      "id": "5462eab6-1b52-417c-a282-734387ea2652",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        1040,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "path": "htmx-mustache-demo-get-json",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "92545ed6-08c3-4830-aeb1-8f38650bf4e9",
+      "name": "Webhook1",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        820,
+        540
+      ],
+      "webhookId": "d2ed07bf-d0ef-443a-b068-6a381eb55107"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({array: $jmespath($input.all(), \"[].json\")}) }}",
+        "options": {}
+      },
+      "id": "b3438dcf-3b64-49cd-9291-8a365a9d0010",
+      "name": "Respond to Webhook1",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        1280,
+        540
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://jsonplaceholder.typicode.com/comments",
+        "options": {}
+      },
+      "id": "469fb282-ee6a-4c90-8115-c86c7e33226e",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        1040,
+        540
+      ]
+    }
+  ],
   "pinData": {},
   "settings": {},
   "staticData": null,
   "tags": [],
-  "updatedAt": "2022-11-15T23:34:17.988Z"
+  "updatedAt": "2022-11-16T00:45:43.231Z"
 }
