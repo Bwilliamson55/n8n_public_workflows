@@ -164,7 +164,7 @@
     }
   },
   "createdAt": "2022-11-12T13:44:55.275Z",
-  "hash": "bddc8eb0ca26ed27299ca7929e30cf43",
+  "hash": "e17fe3b95e1462377ea39fd9912eef38",
   "id": 1,
   "name": "10 Tips",
   "nodes": [
@@ -446,7 +446,7 @@
           "string": [
             {
               "name": "jmespathExample",
-              "value": "={{$jmespath($input.all(), \"[].json.junk[?index==`1`][] | [0]\" ) }}"
+              "value": "={{$jmespath($input.all(), \"[].json | [?index==`26`]\" ) }}"
             },
             {
               "name": "luxonExample",
@@ -629,5 +629,5 @@
   },
   "staticData": null,
   "tags": [],
-  "updatedAt": "2022-11-15T13:16:59.931Z"
+  "updatedAt": "2022-11-16T11:46:16.337Z"
 }
