@@ -1,5 +1,5 @@
 {
-  "active": false,
+  "active": true,
   "connections": {
     "On clicking 'execute'": {
       "main": [
@@ -146,7 +146,18 @@
       "main": [
         [
           {
-            "node": "Code",
+            "node": "Filter to new today and add logos",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter to new today and add logos": {
+      "main": [
+        [
+          {
+            "node": "Slack",
             "type": "main",
             "index": 0
           }
@@ -155,7 +166,7 @@
     }
   },
   "createdAt": "2022-11-19T11:41:01.665Z",
-  "hash": "e4c18b174c2ea56c110055021ab4c62b",
+  "hash": "67918333d8475c2b3f61cb9ecacc46c3",
   "id": 7,
   "name": "Repository Releases Feed",
   "nodes": [
@@ -311,10 +322,42 @@
     },
     {
       "parameters": {
-        "jsCode": "// Loop over input items and add a new field\n// called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+        "channel": "n8n",
+        "text": "=# New Release! {{$json[\"title\"]}}!",
+        "otherOptions": {
+          "mrkdwn": true
+        },
+        "attachments": [
+          {
+            "title": "={{ $json[\"title\"] }}",
+            "text": "=Published: {{DateTime.fromISO($json[\"pubDate\"]).toLocaleString(DateTime.DATETIME_FULL)}}\nContent: {{$json[\"content\"]}}",
+            "title_link": "={{ $json[\"link\"] }}",
+            "footer": "=Github author: {{$json[\"author\"]}} \nGithub Id: {{$json[\"id\"]}}\nSnippet: {{$json[\"contentSnippet\"]}}",
+            "footer_icon": "={{ $json[\"logo\"] }}"
+          }
+        ]
       },
-      "id": "aaff7a0e-fb66-43f0-bef9-b6086365fc53",
-      "name": "Code",
+      "id": "ee5bd45d-6c1e-43bd-b581-078b17c872db",
+      "name": "Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        1600,
+        160
+      ],
+      "credentials": {
+        "slackApi": {
+          "id": "4",
+          "name": "N8N Slackbot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "let newItems = [];\nlet logos = {\n  magento: 'https://avatars.githubusercontent.com/u/168457?s=200&v=4',\n  n8n: 'https://avatars.githubusercontent.com/u/45487711?s=200&v=4',\n  craft: 'https://avatars.githubusercontent.com/u/22369139?s=200&v=4'\n}\nconsole.log(`today is `+$today)\nfor (const item of $input.all()) {  \n  if (DateTime.fromISO(item.json.isoDate) > $today.minus({hours: 25})) {\n    if (item.json.link.includes('magento')) {\n      item.json.logo = logos.magento\n    } else if (item.json.link.includes('craft')) {\n      item.json.logo = logos.craft\n    } else {\n      item.json.logo = logos.n8n\n    }\n    newItems.push(item.json)\n  }\n}\n\nreturn newItems;"
+      },
+      "id": "9623f1e0-fb05-480a-85d7-5336b0e68a25",
+      "name": "Filter to new today and add logos",
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
@@ -331,5 +374,5 @@
   },
   "staticData": null,
   "tags": [],
-  "updatedAt": "2022-11-19T11:57:41.946Z"
+  "updatedAt": "2022-11-19T12:42:38.563Z"
 }
