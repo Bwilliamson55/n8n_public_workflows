@@ -1,0 +1,335 @@
+{
+  "active": false,
+  "connections": {
+    "On clicking 'execute'": {
+      "main": [
+        [
+          {
+            "node": "NoOp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "NoOp": {
+      "main": [
+        [
+          {
+            "node": "Get N8N releases",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get Craft CMS releases",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get Magento 2 Releases",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get Magento 2 Docs Tags",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get Magento 2 MBI Docs commits",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Daily at 10AM": {
+      "main": [
+        [
+          {
+            "node": "NoOp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get N8N releases": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Craft CMS releases": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Get Magento 2 MBI Docs commits": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Get Magento 2 Docs Tags": {
+      "main": [
+        [
+          {
+            "node": "Merge2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge2": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Get Magento 2 Releases": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "Merge3",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Merge3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge3": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-11-19T11:41:01.665Z",
+  "hash": "e4c18b174c2ea56c110055021ab4c62b",
+  "id": 7,
+  "name": "Repository Releases Feed",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "https://github.com/magento/magento2/releases.atom"
+      },
+      "id": "4996b2d8-e7f9-4c4f-a8d8-9b343c3691a2",
+      "name": "Get Magento 2 Releases",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1,
+      "position": [
+        820,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://github.com/magento/devdocs/tags.atom"
+      },
+      "id": "58ffb6d5-f3c3-4901-b1ff-ce3bffc77452",
+      "name": "Get Magento 2 Docs Tags",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1,
+      "position": [
+        820,
+        460
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://github.com/magento/devdocs-mbi/commits.atom"
+      },
+      "id": "6e3ebde7-0053-4663-809c-318d93ae5d64",
+      "name": "Get Magento 2 MBI Docs commits",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1,
+      "position": [
+        820,
+        660
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://github.com/n8n-io/n8n/tags.atom"
+      },
+      "id": "6f87fbb1-429d-4a64-8a62-5943d5e97e1c",
+      "name": "Get N8N releases",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1,
+      "position": [
+        820,
+        -80
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://github.com/craftcms/cms/tags.atom"
+      },
+      "id": "ea63776a-fba8-434b-a215-061747bcc014",
+      "name": "Get Craft CMS releases",
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1,
+      "position": [
+        820,
+        100
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "b4ab57c1-ba65-479d-b975-dd07b441ab4e",
+      "name": "On clicking 'execute'",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        220,
+        360
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "9e254dcf-d1cc-4b35-bd96-ad36760587a0",
+      "name": "NoOp",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        440,
+        280
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 10
+            }
+          ]
+        }
+      },
+      "id": "0f49abad-c22f-4464-87e7-d2a60cc66484",
+      "name": "Daily at 10AM",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [
+        220,
+        200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "04c92b33-f8dc-46a8-9b4e-98080ef91e2a",
+      "name": "Merge",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2,
+      "position": [
+        1040,
+        20
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "91e93acc-03cb-4cba-9d0c-6692e4c7a7da",
+      "name": "Merge1",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2,
+      "position": [
+        1040,
+        300
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "4f56a93f-4c18-4247-8865-112cebecc5b7",
+      "name": "Merge2",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2,
+      "position": [
+        980,
+        560
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "f4cf9dac-4940-49cc-8d94-70d1aeba3ad3",
+      "name": "Merge3",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2,
+      "position": [
+        1160,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field\n// called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+      },
+      "id": "aaff7a0e-fb66-43f0-bef9-b6086365fc53",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        1380,
+        160
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "saveExecutionProgress": "DEFAULT",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": null,
+  "tags": [],
+  "updatedAt": "2022-11-19T11:57:41.946Z"
+}
