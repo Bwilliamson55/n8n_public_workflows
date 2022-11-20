@@ -33,15 +33,10 @@
           }
         ]
       ]
-    },
-    "Templates": {
-      "main": [
-        []
-      ]
     }
   },
   "createdAt": "2022-11-20T02:29:14.963Z",
-  "hash": "84b802829e6bddca6609581a8398037e",
+  "hash": "1520a9100d1feacc9d0bf75a27b3866b",
   "id": 8,
   "name": "The Worst Ecomm Store",
   "nodes": [
@@ -120,7 +115,7 @@
       "parameters": {
         "path": "templates",
         "options": {
-          "responseData": "<div hx-ext=\"client-side-templates\">\n  <p>Template below</p>\n            <template id=\"foo2\">\n              {{#array}}\n                <tr class=\"tr\">\n                    <td>{{postId}}</td>\n                    <td>{{id}}</td>\n                    <td>{{name}}</td>\n                    <td>{{email}}</td>\n                    <td>{{body}}</td>\n                </tr>\n              {{/array}}\n          </template>\n</div>",
+          "responseData": "<div hx-ext=\"client-side-templates\">\n  <!-- Mustache Templates for the page -->\n  <template id=\"foo2\">\n    {{#array}}\n      <tr class=\"tr\">\n          <td>{{postId}}</td>\n          <td>{{id}}</td>\n          <td>{{name}}</td>\n          <td>{{email}}</td>\n          <td>{{body}}</td>\n      </tr>\n    {{/array}}\n  </template>\n  <template id=\"bar\">\n    {{#array}}\n      <tr class=\"tr\">\n          <td>{{name}}</td>\n          <td>{{value}}</td>\n      </tr>\n    {{/array}}\n  </template>\n</div>",
           "responseHeaders": {
             "entries": [
               {
@@ -140,6 +135,32 @@
         520
       ],
       "webhookId": "ca842335-5997-454c-8b5b-aaf4b1dc2ad1"
+    },
+    {
+      "parameters": {
+        "path": "test-json",
+        "options": {
+          "rawBody": true,
+          "responseData": "={{JSON.stringify({array:[{name: \"Name1\", value: \"value 1\"},{name: \"Name2\", value: \"value 2\"}]})}}",
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Content-Type",
+                "value": "Application/Json"
+              }
+            ]
+          }
+        }
+      },
+      "id": "3a21b4ec-9034-4e17-8ac5-f747e1e2823c",
+      "name": "Get test data",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        380,
+        440
+      ],
+      "webhookId": "fd6b29d4-b080-40c4-99d5-ba47e2a36811"
     }
   ],
   "pinData": {},
@@ -150,5 +171,5 @@
   },
   "staticData": null,
   "tags": [],
-  "updatedAt": "2022-11-20T13:51:18.345Z"
+  "updatedAt": "2022-11-20T14:38:42.304Z"
 }
