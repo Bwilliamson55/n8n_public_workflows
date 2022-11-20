@@ -33,10 +33,15 @@
           }
         ]
       ]
+    },
+    "Templates": {
+      "main": [
+        []
+      ]
     }
   },
   "createdAt": "2022-11-20T02:29:14.963Z",
-  "hash": "020b66e0d96cbcc7d5413e1a71a4b11e",
+  "hash": "84b802829e6bddca6609581a8398037e",
   "id": 8,
   "name": "The Worst Ecomm Store",
   "nodes": [
@@ -110,6 +115,31 @@
         1180,
         340
       ]
+    },
+    {
+      "parameters": {
+        "path": "templates",
+        "options": {
+          "responseData": "<div hx-ext=\"client-side-templates\">\n  <p>Template below</p>\n            <template id=\"foo2\">\n              {{#array}}\n                <tr class=\"tr\">\n                    <td>{{postId}}</td>\n                    <td>{{id}}</td>\n                    <td>{{name}}</td>\n                    <td>{{email}}</td>\n                    <td>{{body}}</td>\n                </tr>\n              {{/array}}\n          </template>\n</div>",
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Content-Type",
+                "value": "text/html"
+              }
+            ]
+          }
+        }
+      },
+      "id": "fff87e3a-8b65-41b0-998b-f131abb0e949",
+      "name": "Templates",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        540,
+        520
+      ],
+      "webhookId": "ca842335-5997-454c-8b5b-aaf4b1dc2ad1"
     }
   ],
   "pinData": {},
@@ -120,5 +150,5 @@
   },
   "staticData": null,
   "tags": [],
-  "updatedAt": "2022-11-20T03:31:52.136Z"
+  "updatedAt": "2022-11-20T13:51:18.345Z"
 }
