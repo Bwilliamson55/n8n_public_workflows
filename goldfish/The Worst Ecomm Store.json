@@ -58,7 +58,7 @@
     }
   },
   "createdAt": "2022-11-20T02:29:14.963Z",
-  "hash": "f3097912159909d27cf3e14b92a68810",
+  "hash": "95e3affe95ab601ffd4a5d97db599438",
   "id": 8,
   "name": "The Worst Ecomm Store",
   "nodes": [
@@ -137,7 +137,7 @@
       "parameters": {
         "path": "templates",
         "options": {
-          "responseData": "<div hx-ext=\"client-side-templates\">\n  <!-- Mustache Templates for the page -->\n  <template id=\"foo2\">\n    {{#array}}\n      <tr class=\"tr\">\n          <td>{{postId}}</td>\n          <td>{{id}}</td>\n          <td>{{name}}</td>\n          <td>{{email}}</td>\n          <td>{{body}}</td>\n      </tr>\n    {{/array}}\n  </template>\n  <template id=\"bar\">\n    {{#array}}\n      <tr class=\"tr\">\n          <td>{{name}}</td>\n          <td>{{value}}</td>\n      </tr>\n    {{/array}}\n  </template>\n</div>",
+          "responseData": "<div hx-ext=\"client-side-templates\">\n  <!-- Mustache Templates for the page -->\n  <template id=\"foo2\">\n    {{#array}}\n      <tr class=\"tr\">\n          <td>{{postId}}</td>\n          <td>{{id}}</td>\n          <td>{{name}}</td>\n          <td>{{email}}</td>\n          <td>{{body}}</td>\n      </tr>\n    {{/array}}\n  </template>\n  <template id=\"product-grid-template\">\n    {{#products}}\n    <div class=\"col\">\n      <div class=\"card product-card\">\n        <figure>\n          <img src=\"{{thumbnail}}\" alt=\"{{title}} image\">\n        </figure>\n        <p>Some Text</p>\n        <details class=\"card success\">\n          <summary>Product Details</summary>\n          <p>Is this too small?</p>\n          <table class=\"product-card-detail-table\">\n            <tbody>\n              <tr>\n                <td>id</td>\n                <td>{{id}}</td>\n              </tr>\n              <tr>\n                <td>title</td>\n                <td>{{title}}</td>\n              </tr>\n              <tr>\n                <td>description</td>\n                <td>{{description}}</td>\n              </tr>\n              <tr>\n                <td>price</td>\n                <td>{{price}}</td>\n              </tr>\n              <tr>\n                <td>discountPercentage</td>\n                <td>{{discountPercentage}}</td>\n              </tr>\n              <tr>\n                <td>rating</td>\n                <td>{{rating}}</td>\n              </tr>\n              <tr>\n                <td>stock</td>\n                <td>{{stock}}</td>\n              </tr>\n              <tr>\n                <td>brand</td>\n                <td>{{brand}}</td>\n              </tr>\n              <tr>\n                <td>category</td>\n                <td>{{category}}</td>\n              </tr>\n            </tbody>\n          </table>\n        </details>\n      </div>\n    </div>\n    {{/products}}\n  </template>\n</div>",
           "responseHeaders": {
             "entries": [
               {
@@ -181,7 +181,7 @@
     {
       "parameters": {
         "respondWith": "json",
-        "responseBody": "={{ $json }}",
+        "responseBody": "={{ JSON.stringify($json) }}",
         "options": {
           "responseCode": 200
         }
@@ -210,6 +210,24 @@
         760,
         700
       ]
+    },
+    {
+      "parameters": {
+        "path": "home",
+        "options": {
+          "rawBody": true,
+          "responseData": "<!DOCTYPE html> <html data-theme=\"dark\"> <head>   <meta charset=\"utf-8\">   <meta name=\"viewport\" content=\"width=device-width\">   <title>HTMX client templates via N8N</title>   <link rel=\"stylesheet\" href=\"https://goldfish-app-k52k2.ondigitalocean.app/webhook/css.css\">   <link rel=\"stylesheet\" href=\"https://classless.de/addons/themes.css\">   <script src=\"https://unpkg.com/hyperscript.org@0.9.7\"></script>   <script src=\"https://unpkg.com/htmx.org\"></script>   <script src=\"https://unpkg.com/htmx.org/dist/ext/client-side-templates.js\"></script>   <script src=\"https://unpkg.com/mustache@latest\"></script> </head> <style>   body {     grid-template-columns: 1fr minmax(20rem, 95%) 1fr;   }   .text-center {     text-align: centered;   }   .mx-auto {     margin-left: auto;     margin-right: auto;   }   .product-card-detail-table {     width: 100%;     display: inline-table;   }   .product-card-detail-table td {     white-space: normal;   }   .title {     margin-top: 1rem;     margin-bottom: 1rem;   } </style> <body>   <div class=\"templates\"        id=\"mstemplates\"        hx-get=\"https://goldfish-app-k52k2.ondigitalocean.app/webhook/templates?home\"        hx-trigger=\"load\"        hx-target=\"this\">   </div>   <header>     <nav>       <ul>         <li>Brand</li>         <li class=\"float-right sticky\">Sticky Right</li>         <li><a href=\"#\">Item </a></li>         <li><a href=\"#\">Menu ▾</a>           <ul>             <li><a href=\"#\">Menu 1</a></li>             <li><a href=\"#\">Menu 2</a></li>           </ul>         </li>         <li class=\"float-right\">Collapse</li>       </ul>     </nav>   </header>   <main>     <article>       <div id=\"main-article-template-wrapper\" hx-ext=\"client-side-templates\">         <header class=\"text-center\">             <h1>The Worst Ecommerce Store</h1>             <p>An experiment in minimalism on the modern web. Is this the best solution? Uh, sure. Here's what this is built with:               <dl>                 <dt><a href=\"https://htmx.org/examples/\">HTMX</a></dt>                 <dt><a href=\"https://hyperscript.org/\">HyperScript</a></dt>                 <dt><a href=\"https://classless.de/#demo\">Classless CSS</a></dt>                 <dt>Mustache templates</dt>                 <dd>                   <li><a href=\"https://htmx.org/extensions/client-side-templates/\">HTMX client side templates</a></li>                   <li><a href=\"https://github.com/janl/mustache.js\">Mustache</a></li>                 </dd>                 <dt><a href=\"https://n8n.io/\">N8N \"backend\"</a></dt>               </li>             </p>         </header>         <section id=\"plp\">           <hr>           <h1 class=\"text-center title\">Products</h1>           <hr>             <div hx-get=\"https://goldfish-app-k52k2.ondigitalocean.app/webhook/test-json\"                  hx-target=\"this\"                  hx-trigger=\"revealed\"                  hx-sync=\"#mstemplates:queue last\"                  mustache-template=\"product-grid-template\"                  ></div>            <hr>           </div>          </section>         <section>             <button hx-get=\"https://goldfish-app-k52k2.ondigitalocean.app/webhook/htmx-mustache-demo-get-json\"                      hx-swap=\"afterend\"                     hx-target=\"#table-header\"                     mustache-template=\"foo2\">               Click Me to get table data             </button>             <br>             <input _=\"on input               show <tbody>tr.tr/> in #content-table when it's textContent.toLowerCase() contains my value.toLowerCase()               \"/>             <table id=\"content-table\">               <tbody>                 <tr id=\"table-header\">                   <th>Post Id</th>                   <th>ID</th>                   <th>Name</th>                   <th>Email</th>                   <th>Body</th>                 </tr>               </tbody>             </table>         </section>       </div>     </article>   </main>   <footer>Copyright bla bla</footer> </body> </html>"
+        }
+      },
+      "id": "dada4fe5-7175-495f-9d46-267263a6be37",
+      "name": "Homepage",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        540,
+        180
+      ],
+      "webhookId": "5011a865-792e-49bb-b929-0a0bba6ea733"
     }
   ],
   "pinData": {},
@@ -220,5 +238,5 @@
   },
   "staticData": null,
   "tags": [],
-  "updatedAt": "2022-11-20T19:48:17.542Z"
+  "updatedAt": "2022-11-20T20:34:20.432Z"
 }
