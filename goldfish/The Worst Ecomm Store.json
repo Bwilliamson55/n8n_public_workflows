@@ -33,10 +33,32 @@
           }
         ]
       ]
+    },
+    "Get test data": {
+      "main": [
+        [
+          {
+            "node": "Get sample products",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get sample products": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2022-11-20T02:29:14.963Z",
-  "hash": "3c15f49646d68f4886ccd6b51ea29d48",
+  "hash": "f3097912159909d27cf3e14b92a68810",
   "id": 8,
   "name": "The Worst Ecomm Store",
   "nodes": [
@@ -143,28 +165,51 @@
     {
       "parameters": {
         "path": "test-json",
-        "options": {
-          "rawBody": true,
-          "responseData": "={{JSON.stringify({array:[{name: \"Name1\", value: \"value 1\"},{name: \"Name2\", value: \"value 2\"}]})}}",
-          "responseHeaders": {
-            "entries": [
-              {
-                "name": "Content-Type",
-                "value": "Application/Json"
-              }
-            ]
-          }
-        }
+        "responseMode": "responseNode",
+        "options": {}
       },
       "id": "3a21b4ec-9034-4e17-8ac5-f747e1e2823c",
       "name": "Get test data",
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 1,
       "position": [
-        380,
-        440
+        540,
+        700
       ],
       "webhookId": "fd6b29d4-b080-40c4-99d5-ba47e2a36811"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "id": "6f523680-633d-40bf-a157-52b0d1191696",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        980,
+        700
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://dummyjson.com/products",
+        "options": {
+          "allowUnauthorizedCerts": true
+        }
+      },
+      "id": "6d10d921-503d-441e-b9ea-491937ab0a58",
+      "name": "Get sample products",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        760,
+        700
+      ]
     }
   ],
   "pinData": {},
@@ -175,5 +220,5 @@
   },
   "staticData": null,
   "tags": [],
-  "updatedAt": "2022-11-20T18:40:10.749Z"
+  "updatedAt": "2022-11-20T19:48:17.542Z"
 }
