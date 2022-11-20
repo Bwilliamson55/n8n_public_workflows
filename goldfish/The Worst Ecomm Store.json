@@ -36,7 +36,7 @@
     }
   },
   "createdAt": "2022-11-20T02:29:14.963Z",
-  "hash": "1520a9100d1feacc9d0bf75a27b3866b",
+  "hash": "3c15f49646d68f4886ccd6b51ea29d48",
   "id": 8,
   "name": "The Worst Ecomm Store",
   "nodes": [
@@ -121,6 +121,10 @@
               {
                 "name": "Content-Type",
                 "value": "text/html"
+              },
+              {
+                "name": "HX-Trigger",
+                "value": "loadedTemplates"
               }
             ]
           }
@@ -171,5 +175,5 @@
   },
   "staticData": null,
   "tags": [],
-  "updatedAt": "2022-11-20T14:38:42.304Z"
+  "updatedAt": "2022-11-20T18:40:10.749Z"
 }
