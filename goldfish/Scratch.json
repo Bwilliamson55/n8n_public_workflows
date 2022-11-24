@@ -1,0 +1,70 @@
+{
+  "active": false,
+  "connections": {
+    "On clicking 'execute'": {
+      "main": [
+        [
+          {
+            "node": "Magento 2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-11-24T15:48:47.281Z",
+  "hash": "84386df5c2f68dba250a383a3078fc7d",
+  "id": 9,
+  "name": "Scratch",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "1bf6182e-0bfc-4e62-bcc7-6163adda8cd2",
+      "name": "On clicking 'execute'",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        580,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "product",
+        "operation": "getAll",
+        "options": {}
+      },
+      "id": "2c9959ca-1100-42dc-a453-16d464f3491c",
+      "name": "Magento 2",
+      "type": "n8n-nodes-base.magento2",
+      "typeVersion": 1,
+      "position": [
+        800,
+        360
+      ],
+      "credentials": {
+        "magento2Api": {
+          "id": "5",
+          "name": "Magento 2 account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "saveExecutionProgress": "DEFAULT",
+    "saveManualExecutions": true,
+    "callerPolicy": "any"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2022-11-24T15:48:53.595Z",
+      "updatedAt": "2022-11-24T15:48:53.595Z",
+      "id": "6",
+      "name": "test"
+    }
+  ],
+  "updatedAt": "2022-11-24T15:51:49.416Z"
+}
