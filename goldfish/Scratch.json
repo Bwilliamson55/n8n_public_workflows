@@ -5,7 +5,7 @@
       "main": [
         [
           {
-            "node": "Magento 2",
+            "node": "Get docs from meili",
             "type": "main",
             "index": 0
           }
@@ -25,7 +25,7 @@
     }
   },
   "createdAt": "2022-11-24T15:48:47.281Z",
-  "hash": "e9041e2550f486969364cadcfd5fe8c4",
+  "hash": "cdd16fb75acd6caa089df8fefb62b821",
   "id": 9,
   "name": "Scratch",
   "nodes": [
@@ -52,7 +52,7 @@
             {
               "field": "sku",
               "condition_type": "like",
-              "value": "product_dynamic_25%"
+              "value": "product_dynamic_24%"
             }
           ]
         },
@@ -68,10 +68,11 @@
       ],
       "credentials": {
         "magento2Api": {
-          "id": "5",
-          "name": "Magento 2 account"
+          "id": "8",
+          "name": "m2 weeumson"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -103,8 +104,8 @@
       ],
       "credentials": {
         "httpHeaderAuth": {
-          "id": "6",
-          "name": "Index.weeumson.com api key"
+          "id": "12",
+          "name": "index.weeumson key"
         }
       },
       "disabled": true
@@ -112,13 +113,18 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "http://index.weeumson.com/indexes/products-test5/documents",
+        "url": "http://index.weeumson.com/indexes/products-test8/documents",
         "authentication": "genericCredentialType",
         "genericAuthType": "httpHeaderAuth",
         "sendBody": true,
         "specifyBody": "json",
         "jsonBody": "={{JSON.stringify($jmespath($json, `@.{id: id, sku: sku, name: name, attribute_set_id: attribute_set_id, price: price, status: status, visibility: visibility, type_id: type_id, created_at: created_at, updated_at: updated_at, has_options: custom_attributes[?attribute_code=='has_options'].value|[0],options:options,website_ids: extension_attributes.website_ids, product_links: product_links, options: options, media_gallery_entries: media_gallery_entries, description: custom_attributes[?attribute_code=='description'].value|[0], image: custom_attributes[?attribute_code=='image'].value|[0], small_image: custom_attributes[?attribute_code=='small_image'].value|[0], thumbnail: custom_attributes[?attribute_code=='thumbnail'].value|[0], url_key: custom_attributes[?attribute_code=='url_key'].value|[0], categories: custom_attributes[?attribute_code=='category_ids'].value|[0]}` ) )  }}",
         "options": {
+          "batching": {
+            "batch": {
+              "batchSize": 75
+            }
+          },
           "allowUnauthorizedCerts": true
         }
       },
@@ -132,8 +138,45 @@
       ],
       "credentials": {
         "httpHeaderAuth": {
-          "id": "6",
-          "name": "Index.weeumson.com api key"
+          "id": "12",
+          "name": "index.weeumson key"
+        }
+      },
+      "disabled": true,
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "url": "http://index.weeumson.com/indexes/products-test8/documents",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "limit",
+              "value": "200"
+            },
+            {
+              "name": "fields",
+              "value": "id, sku"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "04f6623d-5435-470d-a515-cae54fce0470",
+      "name": "Get docs from meili",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        800,
+        220
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "12",
+          "name": "index.weeumson key"
         }
       }
     }
@@ -153,5 +196,5 @@
       "name": "test"
     }
   ],
-  "updatedAt": "2022-11-24T17:41:19.708Z"
+  "updatedAt": "2022-11-24T20:45:47.444Z"
 }
