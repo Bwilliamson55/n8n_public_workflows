@@ -176,7 +176,7 @@
     }
   },
   "createdAt": "2022-11-13T14:52:20.086Z",
-  "hash": "5642bac8bea4b27a87475b236132f4e8",
+  "hash": "ca92e22bcfe4ebebe053d36b0b42ee75",
   "id": 5,
   "name": "Backup All",
   "nodes": [
@@ -227,8 +227,8 @@
       "alwaysOutputData": true,
       "credentials": {
         "githubApi": {
-          "id": "3",
-          "name": "GitHub account"
+          "id": "9",
+          "name": "bwilliamson55 n8n"
         }
       },
       "continueOnFail": true
@@ -315,8 +315,8 @@
       "typeVersion": 1,
       "credentials": {
         "githubApi": {
-          "id": "3",
-          "name": "GitHub account"
+          "id": "9",
+          "name": "bwilliamson55 n8n"
         }
       }
     },
@@ -339,8 +339,8 @@
       "typeVersion": 1,
       "credentials": {
         "githubApi": {
-          "id": "3",
-          "name": "GitHub account"
+          "id": "9",
+          "name": "bwilliamson55 n8n"
         }
       }
     },
@@ -431,7 +431,7 @@
       "typeVersion": 1,
       "credentials": {
         "n8nApi": {
-          "id": "2",
+          "id": "11",
           "name": "n8n account"
         }
       }
@@ -495,5 +495,5 @@
       "name": "cron"
     }
   ],
-  "updatedAt": "2022-11-13T19:24:43.117Z"
+  "updatedAt": "2022-11-24T18:18:13.943Z"
 }
