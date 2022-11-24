@@ -25,7 +25,7 @@
     }
   },
   "createdAt": "2022-11-24T15:48:47.281Z",
-  "hash": "3c84aedd9703ac8a8f54a79ffd9842e7",
+  "hash": "592859f0a130bcaa2ec90312e52af31d",
   "id": 9,
   "name": "Scratch",
   "nodes": [
@@ -52,7 +52,7 @@
             {
               "field": "sku",
               "condition_type": "like",
-              "value": "product_dynamic_20%"
+              "value": "product_dynamic_19%"
             }
           ]
         },
@@ -130,6 +130,7 @@
         1000,
         360
       ],
+      "executeOnce": true,
       "credentials": {
         "httpHeaderAuth": {
           "id": "12",
@@ -190,5 +191,5 @@
       "name": "test"
     }
   ],
-  "updatedAt": "2022-11-24T21:57:17.057Z"
+  "updatedAt": "2022-11-24T22:04:44.691Z"
 }
