@@ -166,7 +166,7 @@
     }
   },
   "createdAt": "2022-11-19T11:41:01.665Z",
-  "hash": "67918333d8475c2b3f61cb9ecacc46c3",
+  "hash": "67762031666fd7826ff7b80ca84bb03e",
   "id": 7,
   "name": "Repository Releases Feed",
   "nodes": [
@@ -347,8 +347,8 @@
       ],
       "credentials": {
         "slackApi": {
-          "id": "4",
-          "name": "N8N Slackbot"
+          "id": "10",
+          "name": "N8N slackbot token"
         }
       }
     },
@@ -374,5 +374,5 @@
   },
   "staticData": null,
   "tags": [],
-  "updatedAt": "2022-11-19T12:42:38.563Z"
+  "updatedAt": "2022-11-24T18:15:30.610Z"
 }
