@@ -1,0 +1,197 @@
+{
+  "active": false,
+  "connections": {
+    "On clicking 'execute'": {
+      "main": [
+        [
+          {
+            "node": "NoOp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "NoOp": {
+      "main": [
+        [
+          {
+            "node": "Break Out Spreadsheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Spreadsheet Upload Webhook": {
+      "main": [
+        [
+          {
+            "node": "NoOp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Break Out Spreadsheet": {
+      "main": [
+        [
+          {
+            "node": "Add attribute DTO to each",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add attribute DTO to each": {
+      "main": [
+        [
+          {
+            "node": "Magento 2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-11-25T18:32:21.089Z",
+  "hash": "9f05a57f363a01ff391f5e5488954e25",
+  "id": 10,
+  "name": "Import Products to Magento 2",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "811504b8-abfd-47ad-92e3-0a591bb4b676",
+      "name": "On clicking 'execute'",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        -340
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "389a8ef4-1e7b-46f7-b672-5f80a18eb757",
+      "name": "NoOp",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        140,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# Import camera products to Magento 2\n\nUpload a file to this webhook url via a simple HTML form. Paste the below into https://codepen.io/pen/?editors=1000\n\n\n<!DOCTYPE html>\n<html><body>\n<p>Click on the \"Choose File\" button to upload a file:</p>\n<form action=\"YOUR WEBHOOK URL\" enctype=\"multipart/form-data\" method=\"post\">\n    <input type=\"file\" name=\"data\" id=\"data\">\n    <input type=\"submit\" value=\"Upload\" name=\"submit\">\n</form>\n</body></html>",
+        "height": 327,
+        "width": 1051
+      },
+      "id": "d0f3f886-b750-4e87-b00e-80a534c3b17d",
+      "name": "Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        120,
+        -520
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "product-import",
+        "options": {}
+      },
+      "id": "74b7b392-3991-439d-bb21-9432d2bdcc0a",
+      "name": "Spreadsheet Upload Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        -160
+      ],
+      "webhookId": "c9558f78-673a-4bc6-8022-5b54caa6f383"
+    },
+    {
+      "parameters": {
+        "options": {
+          "headerRow": true,
+          "includeEmptyCells": true
+        }
+      },
+      "id": "970b3151-7d25-41d5-8fdc-e697ae8b267c",
+      "name": "Break Out Spreadsheet",
+      "type": "n8n-nodes-base.spreadsheetFile",
+      "typeVersion": 1,
+      "position": [
+        340,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "let types = {\n  default: {\n    \"is_wysiwyg_enabled\": false,\n    \"is_html_allowed_on_front\": true,\n    \"used_for_sort_by\": false,\n    \"is_filterable\": false,\n    \"is_filterable_in_search\": false,\n    \"is_used_in_grid\": false,\n    \"is_visible_in_grid\": false,\n    \"is_filterable_in_grid\": false,\n    \"is_searchable\": \"1\",\n    \"is_visible_in_advanced_search\": \"1\",\n    \"is_visible_on_front\": \"1\",\n    \"used_in_product_listing\": \"1\",\n    \"is_visible\": true,\n    \"entity_type_id\": \"4\",\n    \"is_required\": false,\n    \"is_user_defined\": true,\n    \"frontend_labels\": [],\n    \"is_unique\": \"0\"\n  },\n  //Number, Price, JSON, Text Area, Text Field, Yes/No\n  number: {\n    \"frontend_input\": \"text\",\n    \"backend_type\": \"varchar\",\n  },\n  text: {\n    \"frontend_input\": \"text\",\n    \"backend_type\": \"varchar\",\n  },\n  textArea: {\n    \"frontend_input\": \"textarea\",\n    \"backend_type\": \"text\",\n  },\n  bool: {\n    \"frontend_input\": \"boolean\",\n    \"backend_type\": \"int\",\n    \"default_value\": \"0\",\n  },\n  price: {\n    \"frontend_input\": \"price\",\n    \"backend_type\": \"decimal\",\n  }\n}\n\nfor (const attribute of $input.all()) {\n  attribute.json.dto = {\n    attribute_code: attribute.json[\"Attribute Name\"].toLowerCase().replace(' ', '_'),\n    default_frontend_label: attribute.json[\"Attribute Name\"]\n  }\n  Object.assign(attribute.json.dto, types.default)\n  switch(attribute.json[\"Attribute Type\"]) {\n    case \"Text Field\":\n      Object.assign(attribute.json.dto, types.text)\n    break;\n    case \"Price\":\n      Object.assign(attribute.json.dto, types.price)\n    break;\n    case \"Number\":\n      Object.assign(attribute.json.dto, types.number)\n    break;\n    case \"Text Area\":\n      Object.assign(attribute.json.dto, types.textArea)\n    break;\n    case \"Yes/No\":\n      Object.assign(attribute.json.dto, types.bool)\n    break;\n    default:\n      Object.assign(attribute.json.dto, types.text)\n  }\n}\n\n\nreturn $input.all();"
+      },
+      "id": "e023cd7a-05f5-4230-b5a9-758350eab6fc",
+      "name": "Add attribute DTO to each",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        560,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "product",
+        "attributeSetId": 4,
+        "additionalFields": {}
+      },
+      "id": "e22abba9-51e8-49f4-8272-5812f718c85d",
+      "name": "Magento 2",
+      "type": "n8n-nodes-base.magento2",
+      "typeVersion": 1,
+      "position": [
+        780,
+        -160
+      ],
+      "credentials": {
+        "magento2Api": {
+          "id": "8",
+          "name": "m2 weeumson"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "saveManualExecutions": true,
+    "callerPolicy": "any",
+    "executionTimeout": 300
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2022-11-24T15:48:53.595Z",
+      "updatedAt": "2022-11-24T15:48:53.595Z",
+      "id": "6",
+      "name": "test"
+    },
+    {
+      "createdAt": "2022-11-25T18:30:26.394Z",
+      "updatedAt": "2022-11-25T18:30:26.394Z",
+      "id": "8",
+      "name": "demo"
+    },
+    {
+      "createdAt": "2022-11-25T18:30:30.280Z",
+      "updatedAt": "2022-11-25T18:30:30.280Z",
+      "id": "9",
+      "name": "magento"
+    }
+  ],
+  "updatedAt": "2022-11-25T18:38:31.760Z"
+}
