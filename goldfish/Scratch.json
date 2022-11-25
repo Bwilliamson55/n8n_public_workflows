@@ -1,44 +1,22 @@
 {
   "active": false,
   "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "NoOp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "On clicking 'execute'": {
       "main": [
         [
           {
-            "node": "Magento 21",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Magento 2": {
-      "main": [
-        [
-          {
-            "node": "Load Products Into MeiliSearch",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Magento 21": {
-      "main": [
-        [
-          {
-            "node": "Magento 22",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Magento 22": {
-      "main": [
-        [
-          {
-            "node": "Magento 21",
+            "node": "NoOp",
             "type": "main",
             "index": 0
           }
@@ -47,200 +25,47 @@
     }
   },
   "createdAt": "2022-11-24T15:48:47.281Z",
-  "hash": "cc2ab6cc710bc74569b61dbeb5b2ae15",
+  "hash": "efbfe22810041b732abfa863549bb935",
   "id": 9,
   "name": "Scratch",
   "nodes": [
     {
       "parameters": {},
-      "id": "1bf6182e-0bfc-4e62-bcc7-6163adda8cd2",
+      "id": "c57c8fb9-eabf-4045-995d-fae94f96755b",
       "name": "On clicking 'execute'",
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        480,
-        60
+        -80,
+        -340
       ]
     },
     {
       "parameters": {
-        "resource": "product",
-        "operation": "getAll",
-        "returnAll": true,
-        "filterType": "manual",
-        "matchType": "allFilters",
-        "filters": {
-          "conditions": [
-            {
-              "field": "sku",
-              "condition_type": "like",
-              "value": "product_dynamic_19%"
-            }
-          ]
-        },
+        "httpMethod": "POST",
+        "path": "144014c6-485d-43a2-819e-9c8506de2d3d",
         "options": {}
       },
-      "id": "2c9959ca-1100-42dc-a453-16d464f3491c",
-      "name": "Magento 2",
-      "type": "n8n-nodes-base.magento2",
+      "id": "9305fd31-1008-44b8-9877-961efb195c1d",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
       "typeVersion": 1,
       "position": [
-        800,
-        360
+        -80,
+        -160
       ],
-      "credentials": {
-        "magento2Api": {
-          "id": "8",
-          "name": "m2 weeumson"
-        }
-      },
-      "disabled": true
+      "webhookId": "144014c6-485d-43a2-819e-9c8506de2d3d"
     },
     {
-      "parameters": {
-        "url": "http://index.weeumson.com/indexes/products-test/documents/1",
-        "authentication": "genericCredentialType",
-        "genericAuthType": "httpHeaderAuth",
-        "sendQuery": true,
-        "queryParameters": {
-          "parameters": [
-            {
-              "name": "fields",
-              "value": "*"
-            }
-          ]
-        },
-        "options": {
-          "batching": {
-            "batch": {}
-          }
-        }
-      },
-      "id": "e5b68bd9-501e-4a4a-b56a-6e94f5895441",
-      "name": "Get one doc",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 3,
-      "position": [
-        580,
-        540
-      ],
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "12",
-          "name": "index.weeumson key"
-        }
-      },
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "http://index.weeumson.com/indexes/products-test8/documents",
-        "authentication": "genericCredentialType",
-        "genericAuthType": "httpHeaderAuth",
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={{JSON.stringify($jmespath($input.all(), `@[].json.{id: id, sku: sku, name: name, attribute_set_id: attribute_set_id, price: price, status: status, visibility: visibility, type_id: type_id, created_at: created_at, updated_at: updated_at, has_options: custom_attributes[?attribute_code=='has_options'].value|[0],options:options,website_ids: extension_attributes.website_ids, product_links: product_links, options: options, media_gallery_entries: media_gallery_entries, description: custom_attributes[?attribute_code=='description'].value|[0], image: custom_attributes[?attribute_code=='image'].value|[0], small_image: custom_attributes[?attribute_code=='small_image'].value|[0], thumbnail: custom_attributes[?attribute_code=='thumbnail'].value|[0], url_key: custom_attributes[?attribute_code=='url_key'].value|[0], categories: custom_attributes[?attribute_code=='category_ids'].value|[0]}` ) )  }}",
-        "options": {
-          "allowUnauthorizedCerts": true
-        }
-      },
-      "id": "4ef7e01e-bce3-4af6-b661-1f07ab0835e1",
-      "name": "Load Products Into MeiliSearch",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 3,
-      "position": [
-        1000,
-        360
-      ],
-      "executeOnce": true,
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "12",
-          "name": "index.weeumson key"
-        }
-      },
-      "disabled": true,
-      "continueOnFail": true
-    },
-    {
-      "parameters": {
-        "url": "http://index.weeumson.com/indexes/products-test8/documents",
-        "authentication": "genericCredentialType",
-        "genericAuthType": "httpHeaderAuth",
-        "sendQuery": true,
-        "queryParameters": {
-          "parameters": [
-            {
-              "name": "limit",
-              "value": "200"
-            },
-            {
-              "name": "fields",
-              "value": "id, sku"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "id": "04f6623d-5435-470d-a515-cae54fce0470",
-      "name": "Get docs from meili",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 3,
-      "position": [
-        780,
-        540
-      ],
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "12",
-          "name": "index.weeumson key"
-        }
-      },
-      "disabled": true
-    },
-    {
-      "parameters": {
-        "resource": "product",
-        "operation": "getAll",
-        "limit": 10,
-        "options": {}
-      },
-      "id": "83e454a6-1e40-4bdb-8fdc-2c0d1dcaf0d6",
-      "name": "Magento 21",
-      "type": "n8n-nodes-base.magento2",
+      "parameters": {},
+      "id": "72e97c41-7b27-4677-9849-d386f0ee0cad",
+      "name": "NoOp",
+      "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [
-        700,
-        60
-      ],
-      "credentials": {
-        "magento2Api": {
-          "id": "8",
-          "name": "m2 weeumson"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "resource": "product",
-        "operation": "delete",
-        "sku": "={{ $json[\"sku\"] }}"
-      },
-      "id": "23588345-d31a-417e-afe5-e5f1bbb5a7ac",
-      "name": "Magento 22",
-      "type": "n8n-nodes-base.magento2",
-      "typeVersion": 1,
-      "position": [
-        1000,
-        60
-      ],
-      "credentials": {
-        "magento2Api": {
-          "id": "8",
-          "name": "m2 weeumson"
-        }
-      }
+        320,
+        -160
+      ]
     }
   ],
   "pinData": {},
@@ -258,5 +83,5 @@
       "name": "test"
     }
   ],
-  "updatedAt": "2022-11-25T13:53:40.743Z"
+  "updatedAt": "2022-11-25T14:35:32.998Z"
 }
