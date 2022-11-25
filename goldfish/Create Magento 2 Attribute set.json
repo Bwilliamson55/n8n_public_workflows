@@ -69,7 +69,7 @@
     }
   },
   "createdAt": "2022-11-24T15:48:47.281Z",
-  "hash": "8facaab9677e0e8144a78c8a1c336487",
+  "hash": "5fe1a4167b8eb431d1604bcb84c7073a",
   "id": 9,
   "name": "Create Magento 2 Attribute set",
   "nodes": [
@@ -99,26 +99,18 @@
       "parameters": {
         "method": "POST",
         "url": "https://m2.weeumson.com/rest/all/V1/products/attributes",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "Accept",
-              "value": "application/json"
-            },
-            {
-              "name": "Authorization",
-              "value": "Bearer urkey"
-            }
-          ]
-        },
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "magento2Api",
         "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "{\"attribute\":{\"attribute_code\":\"url\",\"default_frontend_label\":\"url\",\"is_wysiwyg_enabled\":false,\"is_html_allowed_on_front\":true,\"used_for_sort_by\":false,\"is_filterable\":false,\"is_filterable_in_search\":false,\"is_used_in_grid\":false,\"is_visible_in_grid\":false,\"is_filterable_in_grid\":false,\"is_searchable\":\"1\",\"is_visible_in_advanced_search\":\"1\",\"is_visible_on_front\":\"1\",\"used_in_product_listing\":\"1\",\"is_visible\":true,\"entity_type_id\":\"4\",\"is_required\":false,\"is_user_defined\":true,\"frontend_labels\":[],\"is_unique\":\"0\",\"frontend_input\":\"text\",\"backend_type\":\"varchar\"}}",
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={ attribute: {{JSON.stringify($json[\"dto\"])}} }",
         "options": {
-          "redirect": {
-            "redirect": {
-              "followRedirects": true
+          "response": {
+            "response": {
+              "neverError": true,
+              "responseFormat": "text",
+              "outputPropertyName": "response"
             }
           }
         }
@@ -132,6 +124,12 @@
         -160
       ],
       "alwaysOutputData": false,
+      "credentials": {
+        "magento2Api": {
+          "id": "8",
+          "name": "m2 weeumson"
+        }
+      },
       "continueOnFail": true
     },
     {
@@ -183,7 +181,7 @@
     },
     {
       "parameters": {
-        "jsCode": "let types = {\n  default: {\n    \"is_wysiwyg_enabled\": false,\n    \"is_html_allowed_on_front\": true,\n    \"used_for_sort_by\": false,\n    \"is_filterable\": false,\n    \"is_filterable_in_search\": false,\n    \"is_used_in_grid\": false,\n    \"is_visible_in_grid\": false,\n    \"is_filterable_in_grid\": false,\n    \"is_searchable\": \"1\",\n    \"is_visible_in_advanced_search\": \"1\",\n    \"is_visible_on_front\": \"1\",\n    \"used_in_product_listing\": \"1\",\n    \"is_visible\": true,\n    \"entity_type_id\": \"4\",\n    \"is_required\": false,\n    \"is_user_defined\": true,\n    \"frontend_labels\": [],\n    \"is_unique\": \"0\"\n  },\n  //Number, Price, JSON, Text Area, Text Field, Yes/No\n  number: {\n    \"frontend_input\": \"text\",\n    \"backend_type\": \"varchar\",\n  },\n  text: {\n    \"frontend_input\": \"text\",\n    \"backend_type\": \"varchar\",\n  },\n  textArea: {\n    \"frontend_input\": \"textarea\",\n    \"backend_type\": \"text\",\n  },\n  bool: {\n    \"frontend_input\": \"boolean\",\n    \"backend_type\": \"int\",\n    \"default_value\": \"0\",\n  },\n  price: {\n    \"frontend_input\": \"price\",\n    \"backend_type\": \"decimal\",\n  }\n}\n\nfor (const attribute of $input.all()) {\n  attribute.json.dto = {\n    attribute_code: attribute.json[\"Attribute Name\"].toLowerCase().replace(' ', '_'),\n    default_frontend_label: attribute.json[\"Attribute Name\"]\n  }\n  Object.assign(attribute.json.dto, types.default)\n  switch(attribute.json[\"Attribute Type\"]) {\n    case \"Text Field\":\n      Object.assign(attribute.json.dto, types.text)\n    break;\n    case \"Price\":\n      Object.assign(attribute.json.dto, types.price)\n    break;\n    case \"Number\":\n      Object.assign(attribute.json.dto, types.number)\n    break;\n    case \"Text Area\":\n      Object.assign(attribute.json.dto, types.textArea)\n    break;\n    case \"Yes/No\":\n      Object.assign(attribute.json.dto, types.bool)\n    break;\n    default:\n      Object.assign(attribute.json.dto, types.text)\n  }\n}\n\n\nreturn $input.all();"
+        "jsCode": "let types = {\n  default: {\n    \"is_wysiwyg_enabled\": false,\n    \"is_html_allowed_on_front\": true,\n    \"used_for_sort_by\": false,\n    \"is_filterable\": false,\n    \"is_filterable_in_search\": false,\n    \"is_used_in_grid\": false,\n    \"is_visible_in_grid\": false,\n    \"is_filterable_in_grid\": false,\n    \"is_searchable\": \"1\",\n    \"is_visible_in_advanced_search\": \"1\",\n    \"is_visible_on_front\": \"1\",\n    \"used_in_product_listing\": \"1\",\n    \"is_visible\": true,\n    \"entity_type_id\": \"4\",\n    \"is_required\": false,\n    \"is_user_defined\": true,\n    \"frontend_labels\": [],\n    \"is_unique\": \"0\"\n  },\n  //Number, Price, JSON, Text Area, Text Field, Yes/No\n  number: {\n    \"frontend_input\": \"text\",\n    \"backend_type\": \"varchar\",\n  },\n  text: {\n    \"frontend_input\": \"text\",\n    \"backend_type\": \"varchar\",\n  },\n  textArea: {\n    \"frontend_input\": \"textarea\",\n    \"backend_type\": \"text\",\n  },\n  bool: {\n    \"frontend_input\": \"boolean\",\n    \"backend_type\": \"int\",\n    \"default_value\": \"0\",\n  },\n  price: {\n    \"frontend_input\": \"price\",\n    \"backend_type\": \"decimal\",\n  }\n}\n\nfor (const attribute of $input.all()) {\n  attribute.json.dto = {\n    attribute_code: attribute.json[\"Attribute Name\"].toLowerCase().replaceAll(' ', '_'),\n    default_frontend_label: attribute.json[\"Attribute Name\"]\n  }\n  Object.assign(attribute.json.dto, types.default)\n  switch(attribute.json[\"Attribute Type\"]) {\n    case \"Text Field\":\n      Object.assign(attribute.json.dto, types.text)\n    break;\n    case \"Price\":\n      Object.assign(attribute.json.dto, types.price)\n    break;\n    case \"Number\":\n      Object.assign(attribute.json.dto, types.number)\n    break;\n    case \"Text Area\":\n      Object.assign(attribute.json.dto, types.textArea)\n    break;\n    case \"Yes/No\":\n      Object.assign(attribute.json.dto, types.bool)\n    break;\n    default:\n      Object.assign(attribute.json.dto, types.text)\n  }\n}\n\n\nreturn $input.all();"
       },
       "id": "ffdbe32d-1ae5-4f5b-a6ab-abd928b07d83",
       "name": "Add attribute DTO to each",
@@ -198,27 +196,23 @@
       "parameters": {
         "method": "POST",
         "url": "https://m2.weeumson.com/rest/all/V1/products/attribute-sets/attributes",
-        "sendHeaders": true,
-        "headerParameters": {
-          "parameters": [
-            {
-              "name": "Accept",
-              "value": "application/json"
-            },
-            {
-              "name": "Authorization",
-              "value": "Bearer urkey"
-            }
-          ]
-        },
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "magento2Api",
         "sendBody": true,
         "contentType": "raw",
         "rawContentType": "application/json",
-        "body": "={   \"attributeSetId\": 50,   \"attributeGroupId\": 475,   \"attributeCode\": \"{{$json[\"dto\"][\"attribute_code\"]}}\", \"sortOrder\": 0 }",
+        "body": "={   \"attributeSetId\": 50,   \"attributeGroupId\": 475,   \"attributeCode\": \"{{$node[\"Add attribute DTO to each\"].json[\"dto\"][\"attribute_code\"]}}\", \"sortOrder\": 0 }",
         "options": {
+          "allowUnauthorizedCerts": true,
           "redirect": {
             "redirect": {
               "followRedirects": true
+            }
+          },
+          "response": {
+            "response": {
+              "neverError": true,
+              "responseFormat": "text"
             }
           }
         }
@@ -231,6 +225,12 @@
         1040,
         -160
       ],
+      "credentials": {
+        "magento2Api": {
+          "id": "8",
+          "name": "m2 weeumson"
+        }
+      },
       "continueOnFail": true
     }
   ],
@@ -261,5 +261,5 @@
       "name": "magento"
     }
   ],
-  "updatedAt": "2022-11-25T18:31:25.936Z"
+  "updatedAt": "2022-11-25T22:59:30.840Z"
 }
