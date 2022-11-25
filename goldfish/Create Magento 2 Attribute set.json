@@ -69,7 +69,7 @@
     }
   },
   "createdAt": "2022-11-24T15:48:47.281Z",
-  "hash": "2597ab005892138e3316ab66809bca6e",
+  "hash": "8facaab9677e0e8144a78c8a1c336487",
   "id": 9,
   "name": "Create Magento 2 Attribute set",
   "nodes": [
@@ -98,41 +98,55 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "=https://m2.weeumson.com/rest/all/V1/products/attributes",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "magento2Api",
+        "url": "https://m2.weeumson.com/rest/all/V1/products/attributes",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer urkey"
+            }
+          ]
+        },
         "sendBody": true,
         "specifyBody": "json",
-        "jsonBody": "={{JSON.stringify({ \"attribute\": $json.dto })}}",
-        "options": {}
+        "jsonBody": "{\"attribute\":{\"attribute_code\":\"url\",\"default_frontend_label\":\"url\",\"is_wysiwyg_enabled\":false,\"is_html_allowed_on_front\":true,\"used_for_sort_by\":false,\"is_filterable\":false,\"is_filterable_in_search\":false,\"is_used_in_grid\":false,\"is_visible_in_grid\":false,\"is_filterable_in_grid\":false,\"is_searchable\":\"1\",\"is_visible_in_advanced_search\":\"1\",\"is_visible_on_front\":\"1\",\"used_in_product_listing\":\"1\",\"is_visible\":true,\"entity_type_id\":\"4\",\"is_required\":false,\"is_user_defined\":true,\"frontend_labels\":[],\"is_unique\":\"0\",\"frontend_input\":\"text\",\"backend_type\":\"varchar\"}}",
+        "options": {
+          "redirect": {
+            "redirect": {
+              "followRedirects": true
+            }
+          }
+        }
       },
       "id": "c61d0e97-2270-43cc-bdd2-8bbdc80b3b6f",
       "name": "Create Product Attributes",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        780,
+        800,
         -160
       ],
-      "credentials": {
-        "magento2Api": {
-          "id": "8",
-          "name": "m2 weeumson"
-        }
-      }
+      "alwaysOutputData": false,
+      "continueOnFail": true
     },
     {
       "parameters": {
-        "content": "# Create attribute set for cameras in m2",
-        "width": 706
+        "content": "# Create \"Cameras\" attribute set and group in Magento 2\n\nUpload a file to this webhook url via a simple HTML form. Paste the below into https://codepen.io/pen/?editors=1000\n\n\n<!DOCTYPE html>\n<html><body>\n<p>Click on the \"Choose File\" button to upload a file:</p>\n<form action=\"https://YOUR BASE URL/webhook-test/144014c6-485d-43a2-819e-9c8506de2d3d\" enctype=\"multipart/form-data\" method=\"post\">\n    <input type=\"file\" name=\"data\" id=\"data\">\n    <input type=\"submit\" value=\"Upload\" name=\"submit\">\n</form>\n</body></html>",
+        "height": 327,
+        "width": 1051
       },
       "id": "3bfc9ad2-c4ac-444d-95e3-adb4e60e4b46",
       "name": "Note",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
       "position": [
-        40,
-        -460
+        120,
+        -520
       ]
     },
     {
@@ -184,33 +198,23 @@
       "parameters": {
         "method": "POST",
         "url": "https://m2.weeumson.com/rest/all/V1/products/attribute-sets/attributes",
-        "authentication": "predefinedCredentialType",
-        "nodeCredentialType": "magento2Api",
         "sendHeaders": true,
         "headerParameters": {
           "parameters": [
             {
               "name": "Accept",
               "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer urkey"
             }
           ]
         },
         "sendBody": true,
-        "bodyParameters": {
-          "parameters": [
-            {
-              "name": "attributeSetId",
-              "value": 50
-            },
-            {
-              "name": "attributeGroupId",
-              "value": 475
-            },
-            {
-              "name": "attributeCode"
-            }
-          ]
-        },
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={   \"attributeSetId\": 50,   \"attributeGroupId\": 475,   \"attributeCode\": \"{{$json[\"dto\"][\"attribute_code\"]}}\", \"sortOrder\": 0 }",
         "options": {
           "redirect": {
             "redirect": {
@@ -224,15 +228,10 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 3,
       "position": [
-        1020,
+        1040,
         -160
       ],
-      "credentials": {
-        "magento2Api": {
-          "id": "8",
-          "name": "m2 weeumson"
-        }
-      }
+      "continueOnFail": true
     }
   ],
   "pinData": {},
@@ -244,11 +243,23 @@
   "staticData": null,
   "tags": [
     {
-      "createdAt": "2022-11-24T15:48:53.595Z",
-      "updatedAt": "2022-11-24T15:48:53.595Z",
-      "id": "6",
-      "name": "test"
+      "createdAt": "2022-11-25T18:30:22.306Z",
+      "updatedAt": "2022-11-25T18:30:22.306Z",
+      "id": "7",
+      "name": "working"
+    },
+    {
+      "createdAt": "2022-11-25T18:30:26.394Z",
+      "updatedAt": "2022-11-25T18:30:26.394Z",
+      "id": "8",
+      "name": "demo"
+    },
+    {
+      "createdAt": "2022-11-25T18:30:30.280Z",
+      "updatedAt": "2022-11-25T18:30:30.280Z",
+      "id": "9",
+      "name": "magento"
     }
   ],
-  "updatedAt": "2022-11-25T17:59:10.965Z"
+  "updatedAt": "2022-11-25T18:31:25.936Z"
 }
