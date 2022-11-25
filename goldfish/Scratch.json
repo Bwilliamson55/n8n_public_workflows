@@ -22,10 +22,32 @@
           }
         ]
       ]
+    },
+    "NoOp": {
+      "main": [
+        [
+          {
+            "node": "Spreadsheet File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Spreadsheet File": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2022-11-24T15:48:47.281Z",
-  "hash": "efbfe22810041b732abfa863549bb935",
+  "hash": "8d31eb178d50d11366ca3082794222b0",
   "id": 9,
   "name": "Scratch",
   "nodes": [
@@ -63,7 +85,36 @@
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [
-        320,
+        140,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "options": {
+          "headerRow": true,
+          "includeEmptyCells": true
+        }
+      },
+      "id": "3e4fb35a-cf80-4214-af30-95861c053fcc",
+      "name": "Spreadsheet File",
+      "type": "n8n-nodes-base.spreadsheetFile",
+      "typeVersion": 1,
+      "position": [
+        340,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "let keys = Object.keys($input.first().json);\nreturn keys"
+      },
+      "id": "ffdbe32d-1ae5-4f5b-a6ab-abd928b07d83",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        560,
         -160
       ]
     }
@@ -83,5 +134,5 @@
       "name": "test"
     }
   ],
-  "updatedAt": "2022-11-25T14:35:32.998Z"
+  "updatedAt": "2022-11-25T16:38:15.138Z"
 }
