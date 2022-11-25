@@ -1,0 +1,254 @@
+{
+  "active": false,
+  "connections": {
+    "On clicking 'execute'": {
+      "main": [
+        [
+          {
+            "node": "NoOp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "NoOp": {
+      "main": [
+        [
+          {
+            "node": "Break Out Spreadsheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Spreadsheet Upload Webhook": {
+      "main": [
+        [
+          {
+            "node": "NoOp",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Break Out Spreadsheet": {
+      "main": [
+        [
+          {
+            "node": "Add attribute DTO to each",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add attribute DTO to each": {
+      "main": [
+        [
+          {
+            "node": "Create Product Attributes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Product Attributes": {
+      "main": [
+        [
+          {
+            "node": "Add attributes to camera group and set",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-11-24T15:48:47.281Z",
+  "hash": "2597ab005892138e3316ab66809bca6e",
+  "id": 9,
+  "name": "Create Magento 2 Attribute set",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "c57c8fb9-eabf-4045-995d-fae94f96755b",
+      "name": "On clicking 'execute'",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        -340
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "72e97c41-7b27-4677-9849-d386f0ee0cad",
+      "name": "NoOp",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        140,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://m2.weeumson.com/rest/all/V1/products/attributes",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "magento2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{JSON.stringify({ \"attribute\": $json.dto })}}",
+        "options": {}
+      },
+      "id": "c61d0e97-2270-43cc-bdd2-8bbdc80b3b6f",
+      "name": "Create Product Attributes",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        780,
+        -160
+      ],
+      "credentials": {
+        "magento2Api": {
+          "id": "8",
+          "name": "m2 weeumson"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# Create attribute set for cameras in m2",
+        "width": 706
+      },
+      "id": "3bfc9ad2-c4ac-444d-95e3-adb4e60e4b46",
+      "name": "Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        40,
+        -460
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "144014c6-485d-43a2-819e-9c8506de2d3d",
+        "options": {}
+      },
+      "id": "9305fd31-1008-44b8-9877-961efb195c1d",
+      "name": "Spreadsheet Upload Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        -160
+      ],
+      "webhookId": "144014c6-485d-43a2-819e-9c8506de2d3d"
+    },
+    {
+      "parameters": {
+        "options": {
+          "headerRow": true,
+          "includeEmptyCells": true
+        }
+      },
+      "id": "3e4fb35a-cf80-4214-af30-95861c053fcc",
+      "name": "Break Out Spreadsheet",
+      "type": "n8n-nodes-base.spreadsheetFile",
+      "typeVersion": 1,
+      "position": [
+        340,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "let types = {\n  default: {\n    \"is_wysiwyg_enabled\": false,\n    \"is_html_allowed_on_front\": true,\n    \"used_for_sort_by\": false,\n    \"is_filterable\": false,\n    \"is_filterable_in_search\": false,\n    \"is_used_in_grid\": false,\n    \"is_visible_in_grid\": false,\n    \"is_filterable_in_grid\": false,\n    \"is_searchable\": \"1\",\n    \"is_visible_in_advanced_search\": \"1\",\n    \"is_visible_on_front\": \"1\",\n    \"used_in_product_listing\": \"1\",\n    \"is_visible\": true,\n    \"entity_type_id\": \"4\",\n    \"is_required\": false,\n    \"is_user_defined\": true,\n    \"frontend_labels\": [],\n    \"is_unique\": \"0\"\n  },\n  //Number, Price, JSON, Text Area, Text Field, Yes/No\n  number: {\n    \"frontend_input\": \"text\",\n    \"backend_type\": \"varchar\",\n  },\n  text: {\n    \"frontend_input\": \"text\",\n    \"backend_type\": \"varchar\",\n  },\n  textArea: {\n    \"frontend_input\": \"textarea\",\n    \"backend_type\": \"text\",\n  },\n  bool: {\n    \"frontend_input\": \"boolean\",\n    \"backend_type\": \"int\",\n    \"default_value\": \"0\",\n  },\n  price: {\n    \"frontend_input\": \"price\",\n    \"backend_type\": \"decimal\",\n  }\n}\n\nfor (const attribute of $input.all()) {\n  attribute.json.dto = {\n    attribute_code: attribute.json[\"Attribute Name\"].toLowerCase().replace(' ', '_'),\n    default_frontend_label: attribute.json[\"Attribute Name\"]\n  }\n  Object.assign(attribute.json.dto, types.default)\n  switch(attribute.json[\"Attribute Type\"]) {\n    case \"Text Field\":\n      Object.assign(attribute.json.dto, types.text)\n    break;\n    case \"Price\":\n      Object.assign(attribute.json.dto, types.price)\n    break;\n    case \"Number\":\n      Object.assign(attribute.json.dto, types.number)\n    break;\n    case \"Text Area\":\n      Object.assign(attribute.json.dto, types.textArea)\n    break;\n    case \"Yes/No\":\n      Object.assign(attribute.json.dto, types.bool)\n    break;\n    default:\n      Object.assign(attribute.json.dto, types.text)\n  }\n}\n\n\nreturn $input.all();"
+      },
+      "id": "ffdbe32d-1ae5-4f5b-a6ab-abd928b07d83",
+      "name": "Add attribute DTO to each",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        560,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://m2.weeumson.com/rest/all/V1/products/attribute-sets/attributes",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "magento2Api",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "attributeSetId",
+              "value": 50
+            },
+            {
+              "name": "attributeGroupId",
+              "value": 475
+            },
+            {
+              "name": "attributeCode"
+            }
+          ]
+        },
+        "options": {
+          "redirect": {
+            "redirect": {
+              "followRedirects": true
+            }
+          }
+        }
+      },
+      "id": "5e32d8a0-59c7-41f4-b996-6b2a2cd8042f",
+      "name": "Add attributes to camera group and set",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        1020,
+        -160
+      ],
+      "credentials": {
+        "magento2Api": {
+          "id": "8",
+          "name": "m2 weeumson"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "saveManualExecutions": true,
+    "callerPolicy": "any",
+    "executionTimeout": 300
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2022-11-24T15:48:53.595Z",
+      "updatedAt": "2022-11-24T15:48:53.595Z",
+      "id": "6",
+      "name": "test"
+    }
+  ],
+  "updatedAt": "2022-11-25T17:59:10.965Z"
+}
