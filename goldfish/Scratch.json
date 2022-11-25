@@ -5,7 +5,7 @@
       "main": [
         [
           {
-            "node": "Magento 2",
+            "node": "Magento 21",
             "type": "main",
             "index": 0
           }
@@ -22,10 +22,32 @@
           }
         ]
       ]
+    },
+    "Magento 21": {
+      "main": [
+        [
+          {
+            "node": "Magento 22",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Magento 22": {
+      "main": [
+        [
+          {
+            "node": "Magento 21",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "createdAt": "2022-11-24T15:48:47.281Z",
-  "hash": "592859f0a130bcaa2ec90312e52af31d",
+  "hash": "cc2ab6cc710bc74569b61dbeb5b2ae15",
   "id": 9,
   "name": "Scratch",
   "nodes": [
@@ -36,8 +58,8 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        580,
-        360
+        480,
+        60
       ]
     },
     {
@@ -71,7 +93,8 @@
           "id": "8",
           "name": "m2 weeumson"
         }
-      }
+      },
+      "disabled": true
     },
     {
       "parameters": {
@@ -137,6 +160,7 @@
           "name": "index.weeumson key"
         }
       },
+      "disabled": true,
       "continueOnFail": true
     },
     {
@@ -174,6 +198,49 @@
         }
       },
       "disabled": true
+    },
+    {
+      "parameters": {
+        "resource": "product",
+        "operation": "getAll",
+        "limit": 10,
+        "options": {}
+      },
+      "id": "83e454a6-1e40-4bdb-8fdc-2c0d1dcaf0d6",
+      "name": "Magento 21",
+      "type": "n8n-nodes-base.magento2",
+      "typeVersion": 1,
+      "position": [
+        700,
+        60
+      ],
+      "credentials": {
+        "magento2Api": {
+          "id": "8",
+          "name": "m2 weeumson"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "product",
+        "operation": "delete",
+        "sku": "={{ $json[\"sku\"] }}"
+      },
+      "id": "23588345-d31a-417e-afe5-e5f1bbb5a7ac",
+      "name": "Magento 22",
+      "type": "n8n-nodes-base.magento2",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        60
+      ],
+      "credentials": {
+        "magento2Api": {
+          "id": "8",
+          "name": "m2 weeumson"
+        }
+      }
     }
   ],
   "pinData": {},
@@ -191,5 +258,5 @@
       "name": "test"
     }
   ],
-  "updatedAt": "2022-11-24T22:04:44.691Z"
+  "updatedAt": "2022-11-25T13:53:40.743Z"
 }
