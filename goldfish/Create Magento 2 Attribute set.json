@@ -69,7 +69,7 @@
     }
   },
   "createdAt": "2022-11-24T15:48:47.281Z",
-  "hash": "5fe1a4167b8eb431d1604bcb84c7073a",
+  "hash": "17e07452bd51b5f9edc10320669eac59",
   "id": 9,
   "name": "Create Magento 2 Attribute set",
   "nodes": [
@@ -104,7 +104,7 @@
         "sendBody": true,
         "contentType": "raw",
         "rawContentType": "application/json",
-        "body": "={ attribute: {{JSON.stringify($json[\"dto\"])}} }",
+        "body": "={ \"attribute\": {{JSON.stringify($json[\"dto\"])}} }",
         "options": {
           "response": {
             "response": {
@@ -261,5 +261,5 @@
       "name": "magento"
     }
   ],
-  "updatedAt": "2022-11-25T22:59:30.840Z"
+  "updatedAt": "2022-11-25T23:00:21.072Z"
 }
