@@ -1,0 +1,226 @@
+{
+  "active": false,
+  "connections": {
+    "On clicking 'execute'": {
+      "main": [
+        [
+          {
+            "node": "Magento 2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Magento 2": {
+      "main": [
+        [
+          {
+            "node": "Fix skus",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Load Product Data into Index",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fix skus": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-11-26T15:44:43.068Z",
+  "hash": "26d260cdc13f7cf748f6c79e16e1b478",
+  "id": 12,
+  "name": "Load MeiliSearch with Magento Products",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "17262220-d0a3-4d45-96e5-4b381e636af9",
+      "name": "On clicking 'execute'",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        680,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "resource": "product",
+        "operation": "getAll",
+        "returnAll": true,
+        "filterType": "manual",
+        "matchType": "allFilters",
+        "filters": {
+          "conditions": [
+            {
+              "field": "picture_url",
+              "condition_type": "like",
+              "value": "http%"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "7e2c6d76-1ba3-40ba-a97f-a38dfdab3f8a",
+      "name": "Magento 2",
+      "type": "n8n-nodes-base.magento2",
+      "typeVersion": 1,
+      "position": [
+        900,
+        520
+      ],
+      "credentials": {
+        "magento2Api": {
+          "id": "8",
+          "name": "m2 weeumson"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "\nfor (const item of $input.all()) {\n  let flatCustomAttributes = {}\n  item.json.custom_attributes.map(\n    (att)=>{ flatCustomAttributes[att.attribute_code]= att.value }\n  )\n  delete item.json.custom_attributes\n  delete item.json.tier_prices\n  Object.assign(item.json, flatCustomAttributes)\n}\n\nreturn $input.all();"
+      },
+      "id": "51459a81-4c5e-478f-a39b-72c56b3e9d2d",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        1340,
+        520
+      ]
+    },
+    {
+      "parameters": {
+        "content": "Get all products matching X,\nformat the data for destination index,\nload index,\nwait,\ncheck statuses of tasks created"
+      },
+      "id": "d65cd440-c1a5-4c04-b607-23cb14a86f42",
+      "name": "Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1140,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://index.weeumson.com/indexes/cameras/documents",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "primaryKey",
+              "value": "sku"
+            }
+          ]
+        },
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={{ JSON.stringify($json)}}",
+        "options": {
+          "batching": {
+            "batch": {
+              "batchSize": 25,
+              "batchInterval": 3000
+            }
+          },
+          "allowUnauthorizedCerts": true,
+          "response": {
+            "response": {
+              "neverError": true,
+              "responseFormat": "text"
+            }
+          }
+        }
+      },
+      "id": "c2d74435-4189-4cfb-873a-2a6b3aa0c0ac",
+      "name": "Load Product Data into Index",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        1560,
+        520
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "12",
+          "name": "index.weeumson key"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": "=https://m2.weeumson.com/rest/all/V1/products/{{$json[\"sku\"]}}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "magento2Api",
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={\"saveOptions\":\"true\",\"product\":{\"id\":{{$json[\"id\"]}},\"sku\":\"{{$json[\"sku\"].replace(/[^a-z0-9-_]/gi, '');}}\"}}",
+        "options": {
+          "redirect": {
+            "redirect": {
+              "followRedirects": true
+            }
+          },
+          "response": {
+            "response": {
+              "neverError": true,
+              "responseFormat": "text"
+            }
+          }
+        }
+      },
+      "id": "dcea5e85-f12f-495d-8e75-9fb90eae52ee",
+      "name": "Fix skus",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        1120,
+        520
+      ],
+      "credentials": {
+        "magento2Api": {
+          "id": "8",
+          "name": "m2 weeumson"
+        }
+      },
+      "disabled": true,
+      "continueOnFail": true
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "saveExecutionProgress": "DEFAULT",
+    "saveManualExecutions": true,
+    "callerPolicy": "any",
+    "executionTimeout": 300
+  },
+  "staticData": null,
+  "tags": [],
+  "updatedAt": "2022-11-26T16:55:02.066Z"
+}
