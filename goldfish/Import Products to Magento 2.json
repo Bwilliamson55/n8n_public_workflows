@@ -27,7 +27,7 @@
       "main": [
         [
           {
-            "node": "NoOp",
+            "node": "Spreadsheet File1",
             "type": "main",
             "index": 0
           }
@@ -38,7 +38,40 @@
       "main": [
         [
           {
-            "node": "Add attribute DTO to each",
+            "node": "Add custom attributes DTO to each",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add custom attributes DTO to each": {
+      "main": [
+        [
+          {
+            "node": "Spreadsheet File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Spreadsheet File1": {
+      "main": [
+        [
+          {
+            "node": "Add custom attributes DTO to each1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add custom attributes DTO to each1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
             "type": "main",
             "index": 0
           }
@@ -47,7 +80,7 @@
     }
   },
   "createdAt": "2022-11-25T18:32:21.089Z",
-  "hash": "229b57e0553512c3c124665e25ba2c63",
+  "hash": "102cf1ddb201d6383d2ada245aaab49b",
   "id": 10,
   "name": "Import Products to Magento 2",
   "nodes": [
@@ -122,16 +155,101 @@
     },
     {
       "parameters": {
-        "jsCode": "let dto = {\n      \"attribute_set_id\": 50,\n      \"price\": 0,\n      \"status\": 1,\n      \"visibility\": 4,\n      \"type_id\": \"simple\",\n      \"weight\": 1,\n      \"extension_attributes\": {\n        \"website_ids\": [\n          0\n        ],\n        \"stock_item\": {\n          \"qty\": 10000,\n          \"is_in_stock\": true,\n          \"manage_stock\": false\n        },\n      }\n}\nlet goodAttributes = [\"image\",\n\"brand\",\n\"model\",\n\"url\",\n\"picture_url\",\n\"product_name\",\n\"type\",\n\"model_name\",\n\"color\",\n\"battery_type\",\n\"effective_pixels\",\n\"sensor_type\",\n\"display_size\",\n\"temperature\",\n\"image_format\",\n\"auto_focus\",\n\"shutter_speed\",\n\"sensor_size\",\n\"white_balancing\",\n\"slr_variant\",\n\"external_flash\",\n\"model_number\",\n\"shooting_modes\",\n\"focus_range\",\n\"exposure_mode\",\n\"flash_modes\",\n\"optical_zoom\",\n\"upgradable_memory\",\n\"wifi\",\n\"aspect_ratio\",\n\"shutter_type\",\n\"view_finder\",\n\"video_format\",\n\"metering_modes\",\n\"video_resolution\",\n\"maximum_iso\",\n\"card_type\",\n\"display_type\",\n\"iso_rating\",\n\"focus_mode\",\n\"continuous_shots\",\n\"lens_mount\",\n\"dust_reduction\",\n\"exposure_compensation\",\n\"face_detection\",\n\"series\",\n\"tripod_socket\",\n\"manual_focus\",\n\"touch_screen\",\n\"usb\",\n\"display_resolution\",\n\"manual_exposure\",\n\"microphone\",\n\"viewfinder_coverage\",\n\"aperture_range\",\n\"viewfinder_magnification\",\n\"flash_compensation\",\n\"other_info\",\n\"digital_zoom\",\n\"hd_support\",\n\"lcd_display\",\n\"batteries_included\",\n\"image_stabilizer\",\n\"color_filter\",\n\"hdmi\",\n\"gross_pixel\",\n\"wireless_connectivity\",\n\"video_quality\",\n\"image_sizing\",\n\"sensor_technology\",\n\"spot_meter\",\n\"speaker\",\n\"maximum_fps\",\n\"audio_features\",\n\"power_supply\",\n\"accessory_shoe\",\n\"battery_life\",\n\"power_requirement\",\n\"hdr_support\",\n\"delete_function\",\n\"gps\",\n\"maximum_burst\",\n\"maximum_resolution\",\n\"slow_motion\",\n\"looping_video\",\n\"small_image\",\n\"thumbnail\",\n\"swatch_image\",\n\"page_layout\",\n\"options_container\",\n\"gift_message_available\",\n\"msrp_display_actual_price_type\",\n\"url_key\",\n\"required_options\",\n\"has_options\",\n\"meta_title\",\n\"meta_keyword\",\n\"meta_description\",\n\"tax_class_id\",\n\"category_ids\",\n\"short_description\"]\nlet isGoodAttribute = function(string) {\n  console.log(`key is ${string}`)\n  return goodAttributes.includes(string.toLowerCase().replace(' ', '_'))\n}\n\nfor (const product of $input.all()) {\n  let custAttrKeys = Object.keys(product.json).filter((key, i, arr)=>{ isGoodAttribute(key) })\n  console.log(JSON.stringify(custAttrKeys))\n  console.log(\n    JSON.stringify(custAttrKeys.map((key)=>{ return {\n          \"attribute_code\": key.toLowerCase().replace(' ', '_'),\n          \"value\": product.json[key]\n    } }))\n  )\n  product.json.dto = {\n    sku: product.json[\"Product Name\"].toLowerCase().replace(' ', '-'),\n    name: product.json[\"Product Name\"],\n    custom_attributes: custAttrKeys.map((key)=>{ return {\n          \"attribute_code\": key.toLowerCase().replace(' ', '_'),\n          \"value\": product.json[key]\n    } })\n  }\n  Object.assign(product.json.dto, dto)\n}\n\nreturn $input.all();"
+        "jsCode": "let getRandomInt = function (min, max) {\n  min = Math.ceil(min);\n  max = Math.floor(max);\n  return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive\n}\nlet dto = {\n      \"attribute_set_id\": 50,\n      \"price\": 0,\n      \"status\": 1,\n      \"visibility\": 4,\n      \"type_id\": \"simple\",\n      \"weight\": 1,\n      \"extension_attributes\": {\n        \"website_ids\": [\n          0\n        ],\n        \"stock_item\": {\n          \"qty\": 10000,\n          \"is_in_stock\": true,\n          \"manage_stock\": false\n        },\n      }\n}\nlet isGoodJson = function(jsonString){\n    try {\n        var o = JSON.parse(jsonString);\n        if (o && typeof o === \"object\") {\n            return o;\n        }\n    }\n    catch (e) { }\n    return false;\n};\nlet isGoodAttribute = function(string) {\n  let goodAttributes = [\"name\",\n\"sku\",\n\"description\",\n\"short_description\",\n\"price\",\n\"special_price\",\n\"special_from_date\",\n\"special_to_date\",\n\"cost\",\n\"weight\",\n\"manufacturer\",\n\"meta_title\",\n\"meta_keyword\",\n\"meta_description\",\n\"image\",\n\"small_image\",\n\"thumbnail\",\n\"media_gallery\",\n\"old_id\",\n\"tier_price\",\n\"news_from_date\",\n\"news_to_date\",\n\"gallery\",\n\"status\",\n\"minimal_price\",\n\"visibility\",\n\"custom_design\",\n\"custom_design_from\",\n\"custom_design_to\",\n\"custom_layout_update\",\n\"page_layout\",\n\"category_ids\",\n\"options_container\",\n\"required_options\",\n\"has_options\",\n\"image_label\",\n\"small_image_label\",\n\"thumbnail_label\",\n\"created_at\",\n\"updated_at\",\n\"country_of_manufacture\",\n\"quantity_and_stock_status\",\n\"custom_layout\",\n\"custom_layout_update_file\",\n\"url_key\",\n\"url_path\",\n\"msrp\",\n\"msrp_display_actual_price_type\",\n\"links_purchased_separately\",\n\"samples_title\",\n\"links_title\",\n\"links_exist\",\n\"price_type\",\n\"sku_type\",\n\"weight_type\",\n\"price_view\",\n\"shipment_type\",\n\"gift_message_available\",\n\"swatch_image\",\n\"tax_class_id\",\n\"activity\",\n\"style_bags\",\n\"material\",\n\"strap_bags\",\n\"features_bags\",\n\"gender\",\n\"category_gear\",\n\"size\",\n\"eco_collection\",\n\"performance_fabric\",\n\"erin_recommends\",\n\"new\",\n\"sale\",\n\"format\",\n\"style_bottom\",\n\"style_general\",\n\"sleeve\",\n\"collar\",\n\"pattern\",\n\"climate\",\n\"mycolor\",\n\"mysize\",\n\"configurable_variation\",\n\"ca_1_631447041\",\n\"ca_2_631447041\",\n\"test_text_field\",\n\"url\",\n\"model_name\",\n\"type\",\n\"battery_type\",\n\"effective_pixels\",\n\"sensor_type\",\n\"display_size\",\n\"temperature\",\n\"image_format\",\n\"auto_focus\",\n\"brand\",\n\"product_name\",\n\"model\",\n\"shutter_speed\",\n\"picture_url\",\n\"sensor_size\",\n\"wifi\",\n\"white_balancing\",\n\"flash_modes\",\n\"view_finder\",\n\"model_number\",\n\"continuous_shots\",\n\"video_resolution\",\n\"iso_rating\",\n\"video_format\",\n\"metering_modes\",\n\"display_type\",\n\"maximum_iso\",\n\"card_type\",\n\"focus_mode\",\n\"series\",\n\"lens_mount\",\n\"manual_focus\",\n\"dust_reduction\",\n\"external_flash\",\n\"shooting_modes\",\n\"focus_range\",\n\"face_detection\",\n\"exposure_compensation\",\n\"exposure_mode\",\n\"tripod_socket\",\n\"slr_variant\",\n\"optical_zoom\",\n\"flash_compensation\",\n\"upgradable_memory\",\n\"viewfinder_coverage\",\n\"aspect_ratio\",\n\"usb\",\n\"microphone\",\n\"shutter_type\",\n\"touch_screen\",\n\"manual_exposure\",\n\"display_resolution\",\n\"viewfinder_magnification\",\n\"aperture_range\",\n\"digital_zoom\",\n\"other_info\",\n\"batteries_included\",\n\"hd_support\",\n\"lcd_display\",\n\"image_stabilizer\",\n\"color_filter\",\n\"hdmi\",\n\"gross_pixel\",\n\"wireless_connectivity\",\n\"image_sizing\",\n\"video_quality\",\n\"spot_meter\",\n\"battery_life\",\n\"power_supply\",\n\"maximum_fps\",\n\"speaker\",\n\"sensor_technology\",\n\"gps\",\n\"audio_features\",\n\"accessory_shoe\",\n\"slow_motion\",\n\"hdr_support\",\n\"power_requirement\",\n\"looping_video\",\n\"delete_function\",\n\"maximum_burst\",\n\"maximum_resolution\",\n\"price_in_india\",\n\"lcd_display_image_resolution\",\n\"view_finder_type\",\n\"other_focus_features\",\n\"viewpoint_dioptric_adjustment\",\n\"viewfinder_eye_point\",\n\"other_display_features\",\n\"still_image_size\",\n\"red_eye_reduction\",\n\"live_view_shooting\",\n\"audio_video_interface\",\n\"frame_rates_in_video_modes\"]\n  let ret = goodAttributes.includes(string.toLowerCase().replaceAll(' ', '_'))\n  return ret\n}\n\nfor (const product of $input.all()) {\n  if(isGoodJson(product.json[\"other_info\"].replace(/'/g,'\"'))) {\n    let otherInfo = JSON.parse(product.json[\"other_info\"].replace(/'/g,'\"'))\n    Object.assign(product.json, otherInfo)\n  }\n  let custAttrKeys = Object.keys(product.json).filter((key)=>{ return isGoodAttribute(key) })\n\n  let name = product.json[\"Brand\"] + ' ' + product.json[\"Product Name\"] + ' ' + product.json[\"Model Name\"]\n  product.json.dto = {\n    sku: name.toLowerCase().replaceAll(' ', '-').replaceAll('_','-'),\n    name: name,\n    custom_attributes: custAttrKeys.map((key)=>{ return {\n          \"attribute_code\": key.toLowerCase().replaceAll(' ', '_'),\n          \"value\": product.json[key]\n    } })\n  }\n  Object.assign(product.json.dto, dto)\n  product.json.dto.price = getRandomInt(100, 12000)\n  product.json.dto.weight = getRandomInt(1, 10)\n}\n\nreturn $input.all();"
       },
       "id": "e023cd7a-05f5-4230-b5a9-758350eab6fc",
-      "name": "Add attribute DTO to each",
+      "name": "Add custom attributes DTO to each",
       "type": "n8n-nodes-base.code",
       "typeVersion": 1,
       "position": [
-        560,
+        580,
+        -160
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "operation": "toFile",
+        "options": {}
+      },
+      "id": "2ef22deb-caf9-4054-aa82-8a6cc1943ac6",
+      "name": "Spreadsheet File",
+      "type": "n8n-nodes-base.spreadsheetFile",
+      "typeVersion": 1,
+      "position": [
+        780,
         -160
       ]
+    },
+    {
+      "parameters": {
+        "options": {
+          "includeEmptyCells": true
+        }
+      },
+      "id": "e9b22dd2-3f8c-4eee-86f4-b84667d0aa1e",
+      "name": "Spreadsheet File1",
+      "type": "n8n-nodes-base.spreadsheetFile",
+      "typeVersion": 1,
+      "position": [
+        260,
+        40
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "let getRandomInt = function (min, max) {\n  min = Math.ceil(min);\n  max = Math.floor(max);\n  return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive\n}\nlet dto = {\n      \"attribute_set_id\": 50,\n      \"price\": 0,\n      \"status\": 1,\n      \"visibility\": 4,\n      \"type_id\": \"simple\",\n      \"weight\": 1,\n      \"extension_attributes\": {\n        \"website_ids\": [\n          0\n        ],\n        \"stock_item\": {\n          \"qty\": 10000,\n          \"is_in_stock\": true,\n          \"manage_stock\": false\n        },\n      }\n}\nlet isGoodAttribute = function(string) {\n  let goodAttributes = [\"name\",\n\"sku\",\n\"description\",\n\"short_description\",\n\"price\",\n\"special_price\",\n\"special_from_date\",\n\"special_to_date\",\n\"cost\",\n\"weight\",\n\"manufacturer\",\n\"meta_title\",\n\"meta_keyword\",\n\"meta_description\",\n\"image\",\n\"small_image\",\n\"thumbnail\",\n\"media_gallery\",\n\"old_id\",\n\"tier_price\",\n\"news_from_date\",\n\"news_to_date\",\n\"gallery\",\n\"status\",\n\"minimal_price\",\n\"visibility\",\n\"custom_design\",\n\"custom_design_from\",\n\"custom_design_to\",\n\"custom_layout_update\",\n\"page_layout\",\n\"category_ids\",\n\"options_container\",\n\"required_options\",\n\"has_options\",\n\"image_label\",\n\"small_image_label\",\n\"thumbnail_label\",\n\"created_at\",\n\"updated_at\",\n\"country_of_manufacture\",\n\"quantity_and_stock_status\",\n\"custom_layout\",\n\"custom_layout_update_file\",\n\"url_key\",\n\"url_path\",\n\"msrp\",\n\"msrp_display_actual_price_type\",\n\"links_purchased_separately\",\n\"samples_title\",\n\"links_title\",\n\"links_exist\",\n\"price_type\",\n\"sku_type\",\n\"weight_type\",\n\"price_view\",\n\"shipment_type\",\n\"gift_message_available\",\n\"swatch_image\",\n\"tax_class_id\",\n\"activity\",\n\"style_bags\",\n\"material\",\n\"strap_bags\",\n\"features_bags\",\n\"gender\",\n\"category_gear\",\n\"size\",\n\"eco_collection\",\n\"performance_fabric\",\n\"erin_recommends\",\n\"new\",\n\"sale\",\n\"format\",\n\"style_bottom\",\n\"style_general\",\n\"sleeve\",\n\"collar\",\n\"pattern\",\n\"climate\",\n\"mycolor\",\n\"mysize\",\n\"configurable_variation\",\n\"ca_1_631447041\",\n\"ca_2_631447041\",\n\"test_text_field\",\n\"url\",\n\"model_name\",\n\"type\",\n\"battery_type\",\n\"effective_pixels\",\n\"sensor_type\",\n\"display_size\",\n\"temperature\",\n\"image_format\",\n\"auto_focus\",\n\"brand\",\n\"product_name\",\n\"model\",\n\"shutter_speed\",\n\"picture_url\",\n\"sensor_size\",\n\"wifi\",\n\"white_balancing\",\n\"flash_modes\",\n\"view_finder\",\n\"model_number\",\n\"continuous_shots\",\n\"video_resolution\",\n\"iso_rating\",\n\"video_format\",\n\"metering_modes\",\n\"display_type\",\n\"maximum_iso\",\n\"card_type\",\n\"focus_mode\",\n\"series\",\n\"lens_mount\",\n\"manual_focus\",\n\"dust_reduction\",\n\"external_flash\",\n\"shooting_modes\",\n\"focus_range\",\n\"face_detection\",\n\"exposure_compensation\",\n\"exposure_mode\",\n\"tripod_socket\",\n\"slr_variant\",\n\"optical_zoom\",\n\"flash_compensation\",\n\"upgradable_memory\",\n\"viewfinder_coverage\",\n\"aspect_ratio\",\n\"usb\",\n\"microphone\",\n\"shutter_type\",\n\"touch_screen\",\n\"manual_exposure\",\n\"display_resolution\",\n\"viewfinder_magnification\",\n\"aperture_range\",\n\"digital_zoom\",\n\"other_info\",\n\"batteries_included\",\n\"hd_support\",\n\"lcd_display\",\n\"image_stabilizer\",\n\"color_filter\",\n\"hdmi\",\n\"gross_pixel\",\n\"wireless_connectivity\",\n\"image_sizing\",\n\"video_quality\",\n\"spot_meter\",\n\"battery_life\",\n\"power_supply\",\n\"maximum_fps\",\n\"speaker\",\n\"sensor_technology\",\n\"gps\",\n\"audio_features\",\n\"accessory_shoe\",\n\"slow_motion\",\n\"hdr_support\",\n\"power_requirement\",\n\"looping_video\",\n\"delete_function\",\n\"maximum_burst\",\n\"maximum_resolution\",\n\"price_in_india\",\n\"lcd_display_image_resolution\",\n\"view_finder_type\",\n\"other_focus_features\",\n\"viewpoint_dioptric_adjustment\",\n\"viewfinder_eye_point\",\n\"other_display_features\",\n\"still_image_size\",\n\"red_eye_reduction\",\n\"live_view_shooting\",\n\"audio_video_interface\",\n\"frame_rates_in_video_modes\"]\n  let ret = goodAttributes.includes(string.toLowerCase().replaceAll(' ', '_'))\n  return ret\n}\n\nfor (const product of $input.all()) {\n  let custAttrKeys = Object.keys(product.json).filter((key)=>{ return isGoodAttribute(key) })\n\n  let name = product.json[\"Brand\"] + ' ' + product.json[\"Product Name\"] + ' ' + product.json[\"Model Name\"]\n  product.json.dto = {\n    sku: name.toLowerCase().replaceAll(' ', '-').replaceAll('_','-').trim().slice(0, 18),\n    name: name,\n    custom_attributes: custAttrKeys.map((key)=>{ return {\n          \"attribute_code\": key.toLowerCase().replaceAll(' ', '_'),\n          \"value\": product.json[key]\n    } })\n  }\n  Object.assign(product.json.dto, dto)\n  product.json.dto.price = product.json[\"price\"] ? product.json[\"price\"] : 0\n  product.json.dto.weight = getRandomInt(1, 10)\n}\n\nreturn $input.all();"
+      },
+      "id": "144e239e-9ab5-44b0-89fa-9ce7d75a8917",
+      "name": "Add custom attributes DTO to each1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        520,
+        40
+      ],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://m2.weeumson.com/rest/all/V1/products",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "magento2Api",
+        "sendBody": true,
+        "contentType": "raw",
+        "rawContentType": "application/json",
+        "body": "={ \"product\": {{JSON.stringify($json.dto)}}}",
+        "options": {
+          "allowUnauthorizedCerts": true,
+          "redirect": {
+            "redirect": {
+              "followRedirects": true
+            }
+          },
+          "response": {
+            "response": {
+              "neverError": true,
+              "responseFormat": "text"
+            }
+          }
+        }
+      },
+      "id": "63ed341b-6a96-4f08-80b8-bd592039f102",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        740,
+        40
+      ],
+      "credentials": {
+        "magento2Api": {
+          "id": "8",
+          "name": "m2 weeumson"
+        }
+      },
+      "continueOnFail": true
     }
   ],
   "pinData": {
@@ -28664,5 +28782,5 @@
       "name": "magento"
     }
   ],
-  "updatedAt": "2022-11-25T19:37:59.499Z"
+  "updatedAt": "2022-11-26T14:00:22.913Z"
 }
