@@ -1,0 +1,133 @@
+{
+  "active": false,
+  "connections": {
+    "On clicking 'execute'": {
+      "main": [
+        [
+          {
+            "node": "Break Out Spreadsheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Spreadsheet Upload Webhook": {
+      "main": [
+        [
+          {
+            "node": "Break Out Spreadsheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Break Out Spreadsheet": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2022-12-10T18:42:40.809Z",
+  "hash": "0e2045f3548c0b35114d01ca44cd63aa",
+  "id": 13,
+  "name": "Spreadsheet Upload Example",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "# Upload button\n\nUpload a file to this webhook url via a simple HTML form. Paste the below into https://codepen.io/pen/?editors=1000 and change to your webhook url\n\n\n<!DOCTYPE html>\n<html><body>\n<p>Click on the \"Choose File\" button to upload a file:</p>\n<form action=\"https://YOUR BASE URL/webhook-test/144014c6-485d-43a2-819e-9c8506de2d3d\" enctype=\"multipart/form-data\" method=\"post\">\n    <input type=\"file\" name=\"data\" id=\"data\">\n    <input type=\"submit\" value=\"Upload\" name=\"submit\">\n</form>\n</body></html>",
+        "height": 327,
+        "width": 1012.7874875868916
+      },
+      "id": "64ce60c2-d96d-47c3-aa65-e87b04ddb2d7",
+      "name": "Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        540,
+        380
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "35c7e719-5b86-423f-8b70-06240b763a1e",
+      "name": "On clicking 'execute'",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        680,
+        740
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "144014c6-485d-43a2-819e-9c8506de2d3d",
+        "options": {}
+      },
+      "id": "5634d619-d74b-4d09-ba8b-3971488aa988",
+      "name": "Spreadsheet Upload Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        680,
+        920
+      ],
+      "webhookId": "144014c6-485d-43a2-819e-9c8506de2d3d"
+    },
+    {
+      "parameters": {
+        "options": {
+          "headerRow": true,
+          "includeEmptyCells": true
+        }
+      },
+      "id": "ae010096-53e0-4c81-89ed-1e377c933b91",
+      "name": "Break Out Spreadsheet",
+      "type": "n8n-nodes-base.spreadsheetFile",
+      "typeVersion": 1,
+      "position": [
+        920,
+        920
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field\n// called 'myNewField' to the JSON of each one\nfor (const item of $input.all()) {\n  item.json.myNewField = 1;\n}\n\nreturn $input.all();"
+      },
+      "id": "12a751ce-f974-4ac6-bf94-f0763eb8a246",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        1140,
+        920
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2022-11-25T18:30:26.394Z",
+      "updatedAt": "2022-11-25T18:30:26.394Z",
+      "id": "8",
+      "name": "demo"
+    },
+    {
+      "createdAt": "2022-11-13T12:04:27.915Z",
+      "updatedAt": "2022-11-13T12:04:27.915Z",
+      "id": "1",
+      "name": "endpoint"
+    }
+  ],
+  "updatedAt": "2022-12-10T18:50:19.960Z"
+}
