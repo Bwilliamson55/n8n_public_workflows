@@ -25,7 +25,7 @@
     }
   },
   "createdAt": "2022-11-20T02:29:14.963Z",
-  "hash": "18229b216bc30e495abecb569cbb0bb1",
+  "hash": "b9a518bcf25a927e17cd8a7a99050f9e",
   "id": 8,
   "name": "The Worst Ecomm Store",
   "nodes": [
@@ -186,6 +186,24 @@
           "name": "index.weeumson key"
         }
       }
+    },
+    {
+      "parameters": {
+        "path": "search",
+        "options": {
+          "rawBody": true,
+          "responseData": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n  <meta charset=\"utf-8\" />\n  <link rel=\"stylesheet\"\n    href=\"https://cdn.jsdelivr.net/npm/@meilisearch/instant-meilisearch/templates/basic_search.css\" />\n</head>\n\n<body>\n  <div id=\"app\" class=\"wrapper\">\n    <ais-instant-search :search-client=\"searchClient\" index-name=\"cameras\">\n      <ais-configure :hits-per-page.camel=\"10\" />\n      <ais-search-box placeholder=\"Search here…\" class=\"searchbox\"></ais-search-box>\n      <ais-hits>\n        <div slot=\"item\" slot-scope=\"{ item }\">\n          <ais-highlight :hit=\"item\" attribute=\"title\" />\n        </div>\n      </ais-hits>\n    </ais-instant-search>\n  </div>\n</body>\n<script src=\"https://cdn.jsdelivr.net/npm/vue@2.6.14\"></script>\n<script src=\"https://cdn.jsdelivr.net/npm/vue-instantsearch/vue2/umd/index.js\"></script>\n<script\n  src=\"https://cdn.jsdelivr.net/npm/@meilisearch/instant-meilisearch/dist/instant-meilisearch.umd.min.js\"></script>\n<script>\n  Vue.use(VueInstantSearch)\n  var app = new Vue({\n    el: '#app',\n    data: {\n      searchClient: instantMeiliSearch('https://index.weeumson.com', 'MmUwNGZkYmEwNjQ4NzdiYWVkNmEzODU0')\n    }\n  })\n</script>\n\n</html>"
+        }
+      },
+      "id": "3e58b2fe-2d7a-4a64-8062-0aa14cc7b9be",
+      "name": "Search Example Page",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        760,
+        180
+      ],
+      "webhookId": "47bc69fc-1e7e-4c29-907c-b171557d6996"
     }
   ],
   "pinData": {},
@@ -196,5 +214,5 @@
   },
   "staticData": null,
   "tags": [],
-  "updatedAt": "2022-11-26T19:49:39.941Z"
+  "updatedAt": "2023-01-23T17:56:48.679Z"
 }
