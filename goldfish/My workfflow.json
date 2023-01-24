@@ -1,0 +1,118 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking \"Execute Workflow\"": {
+      "main": [
+        [
+          {
+            "node": "Magento get expired Products",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Break out products": {
+      "main": [
+        [
+          {
+            "node": "Update Magento Product Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Trigger Daily": {
+      "main": [
+        [
+          {
+            "node": "Magento get expired Products",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Magento get expired Products": {
+      "main": [
+        [
+          {
+            "node": "If items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Magento Product Status": {
+      "main": [
+        [
+          {
+            "node": "Item Lists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Item Lists": {
+      "main": [
+        [
+          {
+            "node": "Post Disabled Courses",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If items": {
+      "main": [
+        [
+          {
+            "node": "Break out products",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Nothing to Update",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2023-01-23T21:45:52.699Z",
+  "hash": "e7b5320b37bf8ac8c4f9aab478256743",
+  "id": 15,
+  "name": "My workfflow",
+  "nodes": [],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-01-23T21:40:07.679Z",
+      "updatedAt": "2023-01-23T21:40:07.679Z",
+      "id": "11",
+      "name": "ben"
+    },
+    {
+      "createdAt": "2023-01-23T21:40:07.680Z",
+      "updatedAt": "2023-01-23T21:40:07.680Z",
+      "id": "10",
+      "name": "Magento 2"
+    },
+    {
+      "createdAt": "2022-11-13T14:47:39.361Z",
+      "updatedAt": "2022-11-13T14:47:39.361Z",
+      "id": "3",
+      "name": "cron"
+    }
+  ],
+  "updatedAt": "2023-01-23T21:47:08.573Z"
+}
