@@ -1,0 +1,33 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2023-01-24T01:00:36.191Z",
+  "hash": "34fb0eecae1f9d63fe3e317ec86a2db6",
+  "id": 16,
+  "name": "Magento demo mobiles",
+  "nodes": [],
+  "pinData": {},
+  "settings": {},
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2023-01-23T21:40:07.679Z",
+      "updatedAt": "2023-01-23T21:40:07.679Z",
+      "id": "11",
+      "name": "ben"
+    },
+    {
+      "createdAt": "2022-11-25T18:30:30.280Z",
+      "updatedAt": "2022-11-25T18:30:30.280Z",
+      "id": "9",
+      "name": "magento"
+    },
+    {
+      "createdAt": "2023-01-23T21:40:07.680Z",
+      "updatedAt": "2023-01-23T21:40:07.680Z",
+      "id": "10",
+      "name": "Magento 2"
+    }
+  ],
+  "updatedAt": "2023-01-24T01:00:47.278Z"
+}
