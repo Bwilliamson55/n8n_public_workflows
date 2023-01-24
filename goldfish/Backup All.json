@@ -1,5 +1,5 @@
 {
-  "active": true,
+  "active": false,
   "connections": {
     "GitHub": {
       "main": [
@@ -176,7 +176,7 @@
     }
   },
   "createdAt": "2022-11-13T14:52:20.086Z",
-  "hash": "420299eca8a6cc0c997229d280e5585c",
+  "hash": "bf31003687afc832c3664b6ae5ae42b2",
   "id": 5,
   "name": "Backup All",
   "nodes": [
@@ -497,5 +497,5 @@
       "name": "cron"
     }
   ],
-  "updatedAt": "2022-12-13T18:22:42.170Z"
+  "updatedAt": "2022-12-14T11:40:55.068Z"
 }
